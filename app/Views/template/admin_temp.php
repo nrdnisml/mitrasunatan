@@ -73,8 +73,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <aside class="main-sidebar sidebar-dark-primary elevation-2">
             <!-- Brand Logo -->
             <a href="<?= base_url('dashboard') ?>" class="brand-link">
-                <img src="<?= base_url('assets') ?>/img/thumbnail/thumb_<?= $instansi['img']; ?>" alt="Logo" class="brand-image" style="opacity: .8">
-                <span class="brand-text font-weight-light"><?= $instansi['nama']; ?></span>
+                <img src="<?= base_url('assets') ?>/img/thumbnail/thumb_<?= $instansi ? $instansi['img'] : 'profile.png'; ?>" alt="Logo" class="brand-image" style="opacity: .8">
+                <span class="brand-text font-weight-light"><?= $instansi ? $instansi['nama'] : "Isi data instansi"; ?></span>
             </a>
 
             <!-- Sidebar -->

@@ -45,6 +45,8 @@ class Image extends BaseController
             } else {
                 $namaFile = "profile.png";
             }
+        } else {
+            $namaFile = "profile.png";
         }
         return $namaFile;
     }

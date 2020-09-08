@@ -1,5 +1,6 @@
 <?= $this->extend('template/frontend_temp'); ?>
 <?= $this->section('content'); ?>
+<?php helper('global'); ?>
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
   <div class="container">
@@ -230,51 +231,18 @@
                   <div class="card mt-2">
                     <h5 class="card-header bg-primary text-white">Pilih Paket Sunat</h5>
                     <div class="card-body">
-
-                      <div class="d-flex justify-content-center align-items-center">
-                        <label class="shadow-sm rounded">
-                          <input type="radio" name="paket" class="card-input-element d-none" id="demo1">
-                          <div class="card card-body  bg-light d-flex flex-row justify-content-between align-items-center">
-                            <span><b>Paket 1</b> </span>
-                          </div>
-                        </label>
-                        <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#staticBackdrop">Detail
-                        </button>
-                      </div>
-
-                      <div class="d-flex justify-content-center align-items-center">
-                        <label class="shadow-sm rounded">
-                          <input type="radio" name="paket" class="card-input-element d-none" id="paket">
-                          <div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-                            <b>Paket 2</b>
-                          </div>
-                        </label>
-                        <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#staticBackdrop">Detail
-                        </button>
-                      </div>
-
-                      <div class="d-flex justify-content-center align-items-center">
-                        <label class="shadow-sm rounded">
-                          <input type="radio" name="paket" class="card-input-element d-none" id="paket">
-                          <div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-                            <b>Paket 2</b>
-                          </div>
-                        </label>
-                        <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#staticBackdrop">Detail
-                        </button>
-                      </div>
-
-                      <div class="d-flex justify-content-center align-items-center">
-                        <label class="shadow-sm rounded">
-                          <input type="radio" name="paket" class="card-input-element d-none" id="paket">
-                          <div class="card card-body bg-light d-flex flex-row justify-content-between align-items-center">
-                            <b>Paket 2</b>
-                          </div>
-                        </label>
-                        <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#staticBackdrop">Detail
-                        </button>
-                      </div>
-
+                      <?php foreach ($paket as $p) : ?>
+                        <div class="d-flex justify-content-center align-items-center">
+                          <label class="shadow-sm rounded">
+                            <input type="radio" name="paket" class="card-input-element d-none" id="demo1">
+                            <div class="card card-body  bg-light d-flex flex-row justify-content-between align-items-center">
+                              <span><b><?= $p['nama']; ?></b> </span>
+                            </div>
+                          </label>
+                          <button type="button" class="btn btn-primary m-2 detail" data-id="<?= $p['id']; ?>" data-toggle="modal" data-target="#staticBackdrop">Detail
+                          </button>
+                        </div>
+                      <?php endforeach; ?>
                     </div>
                   </div>
                 </div>
@@ -319,4 +287,67 @@
 
 </main><!-- End #main -->
 
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card card-dark card-outline ">
+          <div class="card-header bg-primary text-white">
+            <p class="h5 nama-paket">HH</p>
+          </div>
+          <div class="card-body bg-light box-profile">
+            <b class="">Deskripsi</b>
+            <p class="des-paket">
+              HH
+            </p>
+            <b>Biaya</b>
+            <div class="d-flex justify-content-between mt-n1">
+              <p>Sunat Anak :</p>
+              <p class="hrg-anak">HH</p>
+            </div>
+            <div class="d-flex justify-content-between mt-n3">
+              <p>Sunat Dewasa :</p>
+              <p class="hrg-dewasa">pe</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Modal  -->
+<?= $this->endSection(); ?>
+
+<?= $this->section('ajax'); ?>
+<script>
+  $('.detail').on('click', function() {
+    const id = $(this).data('id');
+    $('.modal-title').html("Detail Paket");
+    $.ajax({
+      url: '<?= base_url('/Paket/jsonRupiah'); ?>/' + id,
+      data: {
+        id: id
+      },
+      method: 'get',
+      dataType: 'json',
+      success: function(data) {
+        $('.nama-paket').html(data.nama);
+        $('.des-paket').html(data.deskripsi);
+        $('.hrg-anak').html(data.harga_anak);
+        $('.hrg-dewasa').html(data.harga_dewasa);
+      }
+    });
+  });
+</script>
 <?= $this->endSection(); ?>

@@ -2,11 +2,24 @@
 
 namespace App\Controllers;
 
+use App\Models\PaketModel;
+use App\Models\PasienModel;
+
 class Home extends BaseController
 {
+	public function __construct()
+	{
+		$this->pasien = new PasienModel();
+		$this->paket = new PaketModel();
+	}
+
 	public function index()
 	{
-		return view('frontend/index');
+		$data = [
+			'pasien' => $this->pasien->findAll(),
+			'paket' => $this->paket->findAll()
+		];
+		return view('frontend/index', $data);
 	}
 
 	public function login()

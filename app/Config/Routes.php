@@ -38,10 +38,13 @@ $routes->get('/register', 'Home::register');
 $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/instansi', 'Instansi::index');
 $routes->get('/instansi/update', 'Instansi::index');
+$routes->get('/paket/delete/(:num)', 'Paket::delete/$1');
 
 
 $routes->post('/profile', 'Profile::update');
 $routes->post('/instansi/update', 'Instansi::update');
+$routes->post('/paket/add', 'Paket::add');
+
 
 /**
  * --------------------------------------------------------------------
