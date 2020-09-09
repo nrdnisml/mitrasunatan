@@ -33,7 +33,7 @@ class Paket extends BaseController
         $data = $this->model->find($id);
         $paket = [
             'nama' => $data['nama'],
-            'deskirpsi' => $data['deskripsi'],
+            'deskripsi' => $data['deskripsi'],
             'harga_anak' => rupiah($data['harga_anak']),
             'harga_dewasa' => rupiah($data['harga_dewasa']),
         ];
