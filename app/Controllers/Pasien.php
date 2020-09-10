@@ -254,7 +254,7 @@ class Pasien extends BaseController
             'kota_kab' => $kota,
         ];
 
-        $no_hp =  $this->request->getVar('no_tlp');
+        $no_hp =  $this->request->getVar('no-hp');
         if (substr($no_hp, 0, 1) == 0) {
             $no_hp = "62" . substr($no_hp, 1);
         }

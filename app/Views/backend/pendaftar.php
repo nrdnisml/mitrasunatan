@@ -46,7 +46,7 @@
                                     <a href="mailto:<?= $p['email']; ?>" target="blank" class="btn btn-sm btn-warning mt-1"><i class="fas fa-envelope"></i></a>
                                 </div>
                                 <div class="col-sm-12 col-lg-4">
-                                    <a href="<?= base_url('/pendaftar/delete'); ?>/<?= $p['id']; ?>" class="tombol-hapus btn btn-sm btn-danger mt-1"><i class="fas fa-trash"></i></a>
+                                    <a href="<?= base_url('/pendaftar/delete'); ?>/<?= $p['id_pasien']; ?>" class="tombol-hapus btn btn-sm btn-danger mt-1"><i class="fas fa-trash"></i></a>
                                 </div>
                             </div>
                         </td>

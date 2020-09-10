@@ -71,3 +71,11 @@ CRITICAL - 2020-09-10 03:28:39 --> Undefined variable: r
 #7 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
 #8 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
 #9 {main}
+CRITICAL - 2020-09-10 04:46:52 --> Trying to access array offset on value of type null
+#0 D:\PROJEK\WEB\klinik\app\Controllers\Pendaftar.php(49): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'D:\\PROJEK\\WEB\\k...', 49, Array)
+#1 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Pendaftar->delete('11')
+#2 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendaftar))
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#6 {main}
