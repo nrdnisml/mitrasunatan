@@ -7,6 +7,7 @@ use App\Models\PasienModel;
 
 class Home extends BaseController
 {
+
 	public function __construct()
 	{
 		$this->pasien = new PasienModel();

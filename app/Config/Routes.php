@@ -42,6 +42,7 @@ $routes->get('/paket/delete/(:num)', 'Paket::delete/$1');
 
 
 $routes->post('/profile', 'Profile::update');
+$routes->post('/daftar', 'Pasien::add');
 $routes->post('/instansi/update', 'Instansi::update');
 $routes->post('/paket/add', 'Paket::add');
 
