@@ -54,6 +54,12 @@ class Pasien extends BaseController
                 'required' => 'Field tanggal lahir wajib diisi'
             ]
         ],
+        'tgl-booking' => [
+            'rules' => 'required',
+            'errors' => [
+                'required' => 'Field tanggal booking wajib diisi'
+            ]
+        ],
         'pendidikan' => [
             'rules' => 'required',
             'errors' => [
@@ -211,6 +217,7 @@ class Pasien extends BaseController
                     'paket' => $this->paket->findAll(),
                     'validation' => $this->validator
                 ];
+                $this->session->setFlashdata('error', 'Registrasi pasien gagal !');
                 return view('frontend/index', $data);
             } else {
                 $this->addPasien();
@@ -224,6 +231,7 @@ class Pasien extends BaseController
                     'paket' => $this->paket->findAll(),
                     'validation' => $this->validator
                 ];
+                $this->session->setFlashdata('error', 'Registrasi pasien gagal !');
                 return view('frontend/index', $data);
             } else {
                 $this->addPasien();
@@ -246,6 +254,10 @@ class Pasien extends BaseController
             'kota_kab' => $kota,
         ];
 
+        $no_hp =  $this->request->getVar('no_tlp');
+        if (substr($no_hp, 0, 1) == 0) {
+            $no_hp = "62" . substr($no_hp, 1);
+        }
         $data = [
             'id_domisili' => $this->addAlamat($alamat),
             'id_status' => $this->addStatus(),
@@ -258,7 +270,7 @@ class Pasien extends BaseController
             'tmp_lahir' => $this->request->getVar('tmp-lahir'),
             'tgl_lahir' => $this->request->getVar('tgl-lahir'),
             'pendidikan' => $this->request->getVar('pendidikan'),
-            'no_tlp' => $this->request->getVar('no_tlp'),
+            'no_tlp' => $no_hp,
             'email' => $this->request->getVar('email')
         ];
 
@@ -268,7 +280,6 @@ class Pasien extends BaseController
     public function addPj()
     {
         $pj = $this->request->getVar('hubungan');
-
         if ($pj == "Mandiri") {
             # dont add data
             return null;

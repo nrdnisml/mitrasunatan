@@ -1,0 +1,126 @@
+CRITICAL - 2020-09-07 02:05:42 --> Undefined variable: instansi
+#0 D:\PROJEK\WEB\klinik\app\Views\backend\instansi\tambahInstansi.php(93): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'D:\\PROJEK\\WEB\\k...', 93, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('/backend/instan...', Array, true)
+#3 D:\PROJEK\WEB\klinik\app\Controllers\Instansi.php(29): view('/backend/instan...', Array)
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Instansi->index()
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Instansi))
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#9 {main}
+CRITICAL - 2020-09-07 02:24:34 --> Call to a member function getFile() on null
+#0 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(62): App\Controllers\Image->uploadGambar('1')
+#1 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->update()
+#2 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#6 {main}
+CRITICAL - 2020-09-07 02:48:48 --> Undefined property: App\Controllers\Image::$model
+#0 D:\PROJEK\WEB\klinik\app\Controllers\Image.php(12): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'D:\\PROJEK\\WEB\\k...', 12, Array)
+#1 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(63): App\Controllers\Image->uploadGambar('1', Object(CodeIgniter\HTTP\Files\UploadedFile))
+#2 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->update()
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#6 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#7 {main}
+CRITICAL - 2020-09-07 02:51:58 --> Undefined property: App\Controllers\Image::$image
+#0 D:\PROJEK\WEB\klinik\app\Controllers\Image.php(45): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'D:\\PROJEK\\WEB\\k...', 45, Array)
+#1 D:\PROJEK\WEB\klinik\app\Controllers\Image.php(16): App\Controllers\Image->thumbnail('1599465118_019d...')
+#2 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(64): App\Controllers\Image->uploadGambar('1', Object(CodeIgniter\HTTP\Files\UploadedFile), Array)
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->update()
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#8 {main}
+CRITICAL - 2020-09-07 09:23:04 --> Trying to access array offset on value of type null
+#0 D:\PROJEK\WEB\klinik\app\Controllers\Instansi.php(139): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'D:\\PROJEK\\WEB\\k...', 139, Array)
+#1 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Instansi->update()
+#2 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Instansi))
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#6 {main}
+CRITICAL - 2020-09-07 09:24:04 --> Trying to access array offset on value of type null
+#0 D:\PROJEK\WEB\klinik\app\Controllers\Instansi.php(139): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'D:\\PROJEK\\WEB\\k...', 139, Array)
+#1 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Instansi->update()
+#2 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Instansi))
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#6 {main}
+CRITICAL - 2020-09-07 09:24:26 --> Trying to access array offset on value of type null
+#0 D:\PROJEK\WEB\klinik\app\Controllers\Instansi.php(139): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'D:\\PROJEK\\WEB\\k...', 139, Array)
+#1 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Instansi->update()
+#2 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Instansi))
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#6 {main}
+CRITICAL - 2020-09-07 09:30:19 --> Trying to access array offset on value of type null
+#0 D:\PROJEK\WEB\klinik\app\Controllers\Instansi.php(140): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'D:\\PROJEK\\WEB\\k...', 140, Array)
+#1 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Instansi->update()
+#2 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Instansi))
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#6 {main}
+CRITICAL - 2020-09-07 09:31:52 --> Undefined property: App\Controllers\Instansi::$gambar
+#0 D:\PROJEK\WEB\klinik\app\Controllers\Instansi.php(142): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'D:\\PROJEK\\WEB\\k...', 142, Array)
+#1 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Instansi->update()
+#2 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Instansi))
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#6 {main}
+CRITICAL - 2020-09-07 09:32:06 --> Trying to access array offset on value of type null
+#0 D:\PROJEK\WEB\klinik\app\Controllers\Image.php(57): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'D:\\PROJEK\\WEB\\k...', 57, Array)
+#1 D:\PROJEK\WEB\klinik\app\Controllers\Instansi.php(142): App\Controllers\Image->hapusGambar(Array, NULL)
+#2 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Instansi->update()
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Instansi))
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#6 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#7 {main}
+CRITICAL - 2020-09-07 09:34:47 --> Undefined variable: instansi
+#0 D:\PROJEK\WEB\klinik\app\Views\backend\instansi\instansi.php(11): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'D:\\PROJEK\\WEB\\k...', 11, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/instans...', Array, true)
+#3 D:\PROJEK\WEB\klinik\app\Controllers\Instansi.php(123): view('backend/instans...', Array)
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Instansi->update()
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Instansi))
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#9 {main}
+CRITICAL - 2020-09-07 09:35:31 --> Undefined variable: instansi
+#0 D:\PROJEK\WEB\klinik\app\Views\backend\instansi\instansi.php(11): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'D:\\PROJEK\\WEB\\k...', 11, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/instans...', Array, true)
+#3 D:\PROJEK\WEB\klinik\app\Controllers\Instansi.php(123): view('backend/instans...', Array)
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Instansi->update()
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Instansi))
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#9 {main}
+CRITICAL - 2020-09-07 09:48:52 --> Constant expression contains invalid operations
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2020-09-07 09:49:07 --> Constant expression contains invalid operations
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2020-09-07 10:14:01 --> Cannot use object of type stdClass as array
+#0 D:\PROJEK\WEB\klinik\system\View\View.php(246): include()
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(257): CodeIgniter\View\View->render('template/admin_...', Array, true)
+#2 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('/backend/instan...', Array, true)
+#3 D:\PROJEK\WEB\klinik\app\Controllers\Instansi.php(76): view('/backend/instan...', Array)
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Instansi->index()
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Instansi))
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#9 {main}

@@ -1,0 +1,15 @@
+CRITICAL - 2020-08-29 07:29:40 --> Unknown column 'u.path' in 'field list'
+#0 D:\PROJEK\WEB\klinik\system\Database\MySQLi\Connection.php(331): mysqli->query('SELECT `u`.`id`...')
+#1 D:\PROJEK\WEB\klinik\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `u`.`id`...')
+#2 D:\PROJEK\WEB\klinik\system\Database\BaseConnection.php(666): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `u`.`id`...')
+#3 D:\PROJEK\WEB\klinik\app\Views\template\admin_temp.php(8): CodeIgniter\Database\BaseConnection->query('SELECT `u`.`id`...')
+#4 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#5 D:\PROJEK\WEB\klinik\system\View\View.php(257): CodeIgniter\View\View->render('template/admin_...', Array, true)
+#6 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/dashboa...', Array, true)
+#7 D:\PROJEK\WEB\klinik\app\Controllers\Dashboard.php(13): view('backend/dashboa...', Array)
+#8 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Dashboard->index()
+#9 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#10 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#11 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#12 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#13 {main}

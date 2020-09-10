@@ -223,6 +223,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="<?= base_url('assets') ?>/js/dropify.js"></script>
 
     <script>
+        $("#tabel").DataTable();
         const menu = document.getElementsByClassName('has-treeview');
         for (let i = 0; i < menu.length; i++) {
             var expand = menu[i].querySelectorAll('.nav-treeview .nav-item a');

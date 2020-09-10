@@ -1,0 +1,73 @@
+CRITICAL - 2020-09-10 02:03:33 --> Invalid file: {0}
+#0 D:\PROJEK\WEB\klinik\system\View\View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('frontend/index#...')
+#1 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('frontend/index#...', Array, true)
+#2 D:\PROJEK\WEB\klinik\app\Controllers\Pasien.php(235): view('frontend/index#...', Array)
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Pasien->add()
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pasien))
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#8 {main}
+CRITICAL - 2020-09-10 02:04:16 --> Invalid file: {0}
+#0 D:\PROJEK\WEB\klinik\system\View\View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('frontend/index/...')
+#1 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('frontend/index/...', Array, true)
+#2 D:\PROJEK\WEB\klinik\app\Controllers\Pasien.php(235): view('frontend/index/...', Array)
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Pasien->add()
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pasien))
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#8 {main}
+CRITICAL - 2020-09-10 02:32:29 --> Undefined variable: title
+#0 D:\PROJEK\WEB\klinik\app\Views\template\admin_temp.php(28): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'D:\\PROJEK\\WEB\\k...', 28, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\View\View.php(257): CodeIgniter\View\View->render('template/admin_...', Array, true)
+#3 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/pendaft...', Array, true)
+#4 D:\PROJEK\WEB\klinik\app\Controllers\Pendaftar.php(15): view('backend/pendaft...')
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Pendaftar->index()
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendaftar))
+#7 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#10 {main}
+CRITICAL - 2020-09-10 02:33:07 --> Array to string conversion
+#0 D:\PROJEK\WEB\klinik\app\Controllers\Pendaftar.php(19): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Array to string...', 'D:\\PROJEK\\WEB\\k...', 19, Array)
+#1 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Pendaftar->index()
+#2 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendaftar))
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#6 {main}
+CRITICAL - 2020-09-10 03:27:17 --> Unknown column 'paket.layanan' in 'field list'
+#0 D:\PROJEK\WEB\klinik\system\Database\MySQLi\Connection.php(331): mysqli->query('SELECT `pasien`...')
+#1 D:\PROJEK\WEB\klinik\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `pasien`...')
+#2 D:\PROJEK\WEB\klinik\system\Database\BaseConnection.php(666): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `pasien`...')
+#3 D:\PROJEK\WEB\klinik\app\Controllers\Pendaftar.php(9): CodeIgniter\Database\BaseConnection->query('SELECT `pasien`...')
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Pendaftar->index()
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendaftar))
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#9 {main}
+CRITICAL - 2020-09-10 03:28:20 --> Undefined index: tgl-booking
+#0 D:\PROJEK\WEB\klinik\app\Views\backend\pendaftar.php(24): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'D:\\PROJEK\\WEB\\k...', 24, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/pendaft...', Array, true)
+#3 D:\PROJEK\WEB\klinik\app\Controllers\Pendaftar.php(23): view('backend/pendaft...', Array)
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Pendaftar->index()
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendaftar))
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#9 {main}
+CRITICAL - 2020-09-10 03:28:39 --> Undefined variable: r
+#0 D:\PROJEK\WEB\klinik\app\Views\backend\pendaftar.php(31): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'D:\\PROJEK\\WEB\\k...', 31, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/pendaft...', Array, true)
+#3 D:\PROJEK\WEB\klinik\app\Controllers\Pendaftar.php(23): view('backend/pendaft...', Array)
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Pendaftar->index()
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pendaftar))
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#9 {main}

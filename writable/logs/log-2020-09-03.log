@@ -1,0 +1,157 @@
+CRITICAL - 2020-09-03 01:54:50 --> Trying to access array offset on value of type null
+#0 D:\PROJEK\WEB\klinik\app\Views\backend\profile.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to acces...', 'D:\\PROJEK\\WEB\\k...', 20, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('/backend/profil...', Array, true)
+#3 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(21): view('/backend/profil...', Array)
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->index()
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#9 {main}
+CRITICAL - 2020-09-03 04:04:36 --> Undefined property: App\Controllers\Profile::$id
+#0 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(30): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'D:\\PROJEK\\WEB\\k...', 30, Array)
+#1 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->update()
+#2 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#6 {main}
+CRITICAL - 2020-09-03 04:05:27 --> Undefined property: App\Controllers\Profile::$id
+#0 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(55): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'D:\\PROJEK\\WEB\\k...', 55, Array)
+#1 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->update()
+#2 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#6 {main}
+CRITICAL - 2020-09-03 04:06:55 --> Undefined variable: user
+#0 D:\PROJEK\WEB\klinik\app\Views\backend\profile.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'D:\\PROJEK\\WEB\\k...', 20, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/profile', Array, true)
+#3 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(50): view('backend/profile', Array)
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->update()
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#9 {main}
+CRITICAL - 2020-09-03 04:07:57 --> Undefined variable: user
+#0 D:\PROJEK\WEB\klinik\app\Views\backend\profile.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'D:\\PROJEK\\WEB\\k...', 20, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/profile', Array, true)
+#3 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(50): view('backend/profile', Array)
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->update()
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#9 {main}
+CRITICAL - 2020-09-03 04:09:28 --> Undefined property: App\Controllers\Profile::$id
+#0 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(52): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'D:\\PROJEK\\WEB\\k...', 52, Array)
+#1 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->update()
+#2 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#5 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#6 {main}
+CRITICAL - 2020-09-03 04:11:05 --> Undefined index: image
+#0 D:\PROJEK\WEB\klinik\app\Views\backend\profile.php(11): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'D:\\PROJEK\\WEB\\k...', 11, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('/backend/profil...', Array, true)
+#3 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(24): view('/backend/profil...', Array)
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->index()
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#9 {main}
+CRITICAL - 2020-09-03 04:16:26 --> Undefined variable: validation
+#0 D:\PROJEK\WEB\klinik\app\Views\backend\profile.php(4): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'D:\\PROJEK\\WEB\\k...', 4, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/profile', Array, true)
+#3 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(55): view('backend/profile', Array)
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->update()
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#9 {main}
+CRITICAL - 2020-09-03 04:16:39 --> Undefined variable: validation
+#0 D:\PROJEK\WEB\klinik\app\Views\backend\profile.php(4): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'D:\\PROJEK\\WEB\\k...', 4, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('/backend/profil...', Array, true)
+#3 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(24): view('/backend/profil...', Array)
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->index()
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#9 {main}
+CRITICAL - 2020-09-03 04:23:09 --> Undefined property: App\Controllers\Profile::$image
+#0 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(139): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'D:\\PROJEK\\WEB\\k...', 139, Array)
+#1 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(109): App\Controllers\Profile->thumbnail('1599124989_0df7...')
+#2 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(60): App\Controllers\Profile->uploadGambar('1')
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->update()
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#8 {main}
+CRITICAL - 2020-09-03 05:18:05 --> Undefined property: App\Controllers\Profile::$image
+#0 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(139): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'D:\\PROJEK\\WEB\\k...', 139, Array)
+#1 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(109): App\Controllers\Profile->thumbnail('1599128285_6836...')
+#2 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(60): App\Controllers\Profile->uploadGambar('1')
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->update()
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#8 {main}
+CRITICAL - 2020-09-03 05:32:07 --> Undefined property: CodeIgniter\View\View::$session
+#0 D:\PROJEK\WEB\klinik\app\Views\template\admin_temp.php(83): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'D:\\PROJEK\\WEB\\k...', 83, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\View\View.php(257): CodeIgniter\View\View->render('template/admin_...', Array, true)
+#3 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('/backend/profil...', Array, true)
+#4 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(24): view('/backend/profil...', Array)
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->index()
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#7 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#10 {main}
+CRITICAL - 2020-09-03 05:34:11 --> Undefined variable: session
+#0 D:\PROJEK\WEB\klinik\app\Views\template\admin_temp.php(86): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'D:\\PROJEK\\WEB\\k...', 86, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\View\View.php(257): CodeIgniter\View\View->render('template/admin_...', Array, true)
+#3 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('/backend/profil...', Array, true)
+#4 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(24): view('/backend/profil...', Array)
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->index()
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#7 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#10 {main}
+CRITICAL - 2020-09-03 05:34:54 --> Undefined property: CodeIgniter\View\View::$session
+#0 D:\PROJEK\WEB\klinik\app\Views\template\admin_temp.php(86): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'D:\\PROJEK\\WEB\\k...', 86, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\View\View.php(257): CodeIgniter\View\View->render('template/admin_...', Array, true)
+#3 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('/backend/profil...', Array, true)
+#4 D:\PROJEK\WEB\klinik\app\Controllers\Profile.php(24): view('/backend/profil...', Array)
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Profile->index()
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Profile))
+#7 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#10 {main}
+CRITICAL - 2020-09-03 06:03:27 --> Undefined variable: t
+#0 D:\PROJEK\WEB\klinik\app\Views\backend\dashboard.php(90): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'D:\\PROJEK\\WEB\\k...', 90, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/dashboa...', Array, true)
+#3 D:\PROJEK\WEB\klinik\app\Controllers\Dashboard.php(13): view('backend/dashboa...', Array)
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Dashboard->index()
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dashboard))
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#8 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#9 {main}

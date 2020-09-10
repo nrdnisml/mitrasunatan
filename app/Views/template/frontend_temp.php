@@ -108,6 +108,10 @@
     <!-- Template Main JS File -->
     <script src="<?= base_url('assets') ?>/js/main.js"></script>
     <script src="<?= base_url('assets') ?>/js/bs-stepper.min.js"></script>
+    <!-- SWEETALERT -->
+    <!-- sweetalert -->
+    <script src="<?= base_url('assets'); ?>/js/sweetalert2.all.min.js"></script>
+    <script src="<?= base_url('assets'); ?>/js/myscript.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             stepper = new Stepper(document.querySelector('#stepper'), {

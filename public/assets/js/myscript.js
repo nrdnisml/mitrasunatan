@@ -24,8 +24,7 @@ if (flashdata) {
     type: "error",
     title: "Oops...",
     text: flashdata,
-    // footer:
-    //   "<a href='https://wa.me/62811331167'>Butuh bantuan? hubungi admin..</a>",
+    footer: "Periksa kembali form registrasi !",
   });
 }
 

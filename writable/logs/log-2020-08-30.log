@@ -1,0 +1,62 @@
+CRITICAL - 2020-08-30 03:28:55 --> Invalid file: {0}
+#0 D:\PROJEK\WEB\klinik\system\View\View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('backend/login.p...')
+#1 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/login', Array, true)
+#2 D:\PROJEK\WEB\klinik\app\Controllers\Home.php(14): view('backend/login')
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Home->login()
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#8 {main}
+CRITICAL - 2020-08-30 03:30:45 --> Invalid file: {0}
+#0 D:\PROJEK\WEB\klinik\system\View\View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('backend/login.p...')
+#1 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/login', Array, true)
+#2 D:\PROJEK\WEB\klinik\app\Controllers\Home.php(14): view('backend/login')
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Home->login()
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#8 {main}
+CRITICAL - 2020-08-30 03:31:28 --> Invalid file: {0}
+#0 D:\PROJEK\WEB\klinik\system\View\View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('backend/login.p...')
+#1 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/login', Array, true)
+#2 D:\PROJEK\WEB\klinik\app\Controllers\Home.php(14): view('backend/login')
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Home->login()
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#8 {main}
+CRITICAL - 2020-08-30 03:32:09 --> Invalid file: {0}
+#0 D:\PROJEK\WEB\klinik\system\View\View.php(228): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('backend/login.p...')
+#1 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/login', Array, true)
+#2 D:\PROJEK\WEB\klinik\app\Controllers\Home.php(14): view('backend/login')
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Home->login()
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#8 {main}
+CRITICAL - 2020-08-30 03:33:17 --> Call to undefined function set_value()
+#0 D:\PROJEK\WEB\klinik\system\View\View.php(246): include()
+#1 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/login', Array, true)
+#2 D:\PROJEK\WEB\klinik\app\Controllers\Home.php(14): view('backend/login')
+#3 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Home->login()
+#4 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#7 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#8 {main}
+CRITICAL - 2020-08-30 03:34:16 --> Undefined variable: title
+#0 D:\PROJEK\WEB\klinik\app\Views\template\login_temp.php(12): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'D:\\PROJEK\\WEB\\k...', 12, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\View\View.php(257): CodeIgniter\View\View->render('template/login_...', Array, true)
+#3 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/login', Array, true)
+#4 D:\PROJEK\WEB\klinik\app\Controllers\Home.php(14): view('backend/login')
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Home->login()
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#10 {main}

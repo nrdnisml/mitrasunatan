@@ -1,5 +1,7 @@
 <?= $this->extend('template/frontend_temp'); ?>
 <?= $this->section('content'); ?>
+<div class="flash-data-success" data-flashdata="<?= session()->getFlashdata('success'); ?>"></div>
+<div class="flash-data" data-flashdata="<?= session()->getFlashdata('error'); ?>"></div>
 <?php helper('global'); ?>
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex align-items-center">
@@ -143,6 +145,9 @@
                         <option value="Budha" <?= set_select('agama', 'Budha'); ?>>Budha</option>
                         <option value="Konghucu" <?= set_select('agama', 'Konghucu'); ?>>Konghucu</option>
                       </select>
+                      <div class=" invalid-feedback">
+                        <?= isset($validation) ? $validation->showError('agama') : ''; ?>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -177,6 +182,9 @@
                       <option value="Saudara Kandung" <?= set_select('hubungan', 'Saudara Kandung'); ?>>Saudara Kandung</option>
                       <option value="Family lain" <?= set_select('hubungan', 'Family lain'); ?>>Family Lain</option>
                     </select>
+                    <div class=" invalid-feedback">
+                      <?= isset($validation) ? $validation->showError('hubungan') : ''; ?>
+                    </div>
                   </div>
                   <div class="col-sm-12 col-md-6">
                     <label>Pendidikan Terakhir</label>
@@ -269,7 +277,7 @@
                 <div class="line my-3"></div>
                 <div class="form-group">
                   <label for="no-hp">No. Telp / WA</label>
-                  <input type="number" name="no-hp" id="no-hp" class="form-control <?= isset($validation) && $validation->showError('no-hp') ? 'is-invalid' : ''; ?>" placeholder="" value="<?= set_value('no-hp'); ?>">
+                  <input type="text" name="no-hp" id="no-hp" class="form-control <?= isset($validation) && $validation->showError('no-hp') ? 'is-invalid' : ''; ?>" placeholder="" value="<?= set_value('no-hp'); ?>">
                   <div class=" invalid-feedback">
                     <?= isset($validation) ? $validation->showError('no-hp') : ''; ?>
                   </div>
@@ -385,7 +393,10 @@
                             <div class="row">
                               <label for="tgl-booking" class="col-sm-4 col-form-label text-right mr-2">Tanggal sunat (booking)</label>
                               <div class="col-sm-6">
-                                <input type="date" class="form-control" id="tgl-booking" name="tgl-booking">
+                                <input type="date" class="form-control <?= isset($validation) && $validation->showError('tgl-booking') ? 'is-invalid' : ''; ?>" id="tgl-booking" name="tgl-booking" value="<?= set_value('tgl-booking'); ?>">
+                                <div class=" invalid-feedback">
+                                  <?= isset($validation) ? $validation->showError('tgl-booking') : ''; ?>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -395,7 +406,16 @@
                   </div>
                   <div class="col-sm-12 col-md-6">
                     <div class="card mt-2">
-                      <h5 class="card-header bg-primary text-white">Pilih Paket Sunat</h5>
+                      <div class="card-header bg-primary text-white">
+                        <h5 class="d-inline mr-2">
+                          Pilih Paket Sunat
+                        </h5>
+                        <?php if (isset($validation) && $validation->showError('paket')) : ?>
+                          <small class="d-inline bg-danger rounded text-white p-2">
+                            <b><?= 'Mohon pilih paket !' ?></b>
+                          </small>
+                        <?php endif; ?>
+                      </div>
                       <div class="card-body bg-dark">
                         <?php foreach ($paket as $p) : ?>
                           <div class="d-flex justify-content-center align-items-center">
@@ -414,7 +434,14 @@
                   </div>
                   <div class="col-sm-12 col-md-6">
                     <div class="card mt-2">
-                      <h5 class="card-header bg-warning text-white">Layanan dan Tanggal Sunat</h5>
+                      <div class="card-header bg-warning text-white">
+                        <h5 class="d-inline">Layanan</h5>
+                        <?php if (isset($validation) && $validation->showError('layanan')) : ?>
+                          <small class="d-inline bg-danger rounded text-white p-2">
+                            <b><?= 'Mohon pilih layanan !' ?></b>
+                          </small>
+                        <?php endif; ?>
+                      </div>
                       <div class="card-body bg-dark">
 
                         <div class="d-flex justify-content-center align-items-center">

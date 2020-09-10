@@ -1,0 +1,26 @@
+CRITICAL - 2020-09-01 04:30:35 --> Unknown column 'created_at' in 'field list'
+#0 D:\PROJEK\WEB\klinik\system\Database\MySQLi\Connection.php(331): mysqli->query('INSERT INTO `us...')
+#1 D:\PROJEK\WEB\klinik\system\Database\BaseConnection.php(738): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `us...')
+#2 D:\PROJEK\WEB\klinik\system\Database\BaseConnection.php(666): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `us...')
+#3 D:\PROJEK\WEB\klinik\system\Database\BaseBuilder.php(2234): CodeIgniter\Database\BaseConnection->query('INSERT INTO `us...', Array, false)
+#4 D:\PROJEK\WEB\klinik\system\Model.php(729): CodeIgniter\Database\BaseBuilder->insert()
+#5 D:\PROJEK\WEB\klinik\system\Model.php(557): CodeIgniter\Model->insert(Array, false)
+#6 D:\PROJEK\WEB\klinik\app\Controllers\Auth.php(64): CodeIgniter\Model->save(Array)
+#7 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Auth->register()
+#8 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#11 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#12 {main}
+CRITICAL - 2020-09-01 04:48:19 --> Undefined variable: title
+#0 D:\PROJEK\WEB\klinik\app\Views\template\login_temp.php(12): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'D:\\PROJEK\\WEB\\k...', 12, Array)
+#1 D:\PROJEK\WEB\klinik\system\View\View.php(246): include('D:\\PROJEK\\WEB\\k...')
+#2 D:\PROJEK\WEB\klinik\system\View\View.php(257): CodeIgniter\View\View->render('template/login_...', Array, true)
+#3 D:\PROJEK\WEB\klinik\system\Common.php(1087): CodeIgniter\View\View->render('backend/login', Array, true)
+#4 D:\PROJEK\WEB\klinik\app\Controllers\Auth.php(35): view('backend/login', Array)
+#5 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(914): App\Controllers\Auth->login()
+#6 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(400): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#7 D:\PROJEK\WEB\klinik\system\CodeIgniter.php(308): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 D:\PROJEK\WEB\klinik\public\index.php(45): CodeIgniter\CodeIgniter->run()
+#9 D:\PROJEK\WEB\klinik\system\Commands\Server\rewrite.php(34): require_once('D:\\PROJEK\\WEB\\k...')
+#10 {main}
