@@ -23,8 +23,8 @@ if (flashdata) {
   Swal.fire({
     type: "error",
     title: "Oops...",
-    text: flashdata,
-    footer: "Periksa kembali form registrasi !",
+    html: flashdata,
+    // footer: "Periksa kembali form registrasi !",
   });
 }
 
