@@ -168,6 +168,8 @@ class Pasien extends BaseController
         echo view('backend/pasien/pasien', $data);
     }
 
+    ####################################### GET DATA PASIEN #######################################
+
     public function getData($id = null)
     {
         if (!$id) {
@@ -255,44 +257,47 @@ class Pasien extends BaseController
         }
     }
 
+
+    ####################################### CRUD DATA PASIEN #######################################
+
     public function add()
     {
         $pj = $this->request->getVar('hubungan');
         if ($pj == "Mandiri") {
             if (!$this->validate($this->validation)) {
-                $data = [
-                    'pasien' => $this->model->findAll(),
-                    'paket' => $this->paket->findAll(),
-                    'validation' => $this->validator
-                ];
-                $this->session->setFlashdata('error', 'Registrasi pasien gagal !');
-                return view('frontend/index', $data);
+                $this->validasiData();
             } else {
-                $this->addPasien();
-                $this->session->setFlashdata('success', 'Registrasi pasien berhasil !');
-                return redirect()->to('/');
+                return $this->addAllTable();
             }
         } else {
             if (!$this->validate(array_merge($this->validation, $this->val_pj))) {
-                $data = [
-                    'pasien' => $this->model->findAll(),
-                    'paket' => $this->paket->findAll(),
-                    'validation' => $this->validator
-                ];
-                $this->session->setFlashdata('error', 'Registrasi pasien gagal !');
-                return view('frontend/index', $data);
+                $this->validasiData();
             } else {
-                $this->addPasien();
-                $this->session->setFlashdata('success', 'Registrasi pasien berhasil !');
-                return redirect()->to('/');
+                return $this->addAllTable();
             }
         }
     }
 
+    private function validasiData()
+    {
+        $data = [
+            'pasien' => $this->model->findAll(),
+            'paket' => $this->paket->findAll(),
+            'validation' => $this->validator
+        ];
+        $this->session->setFlashdata('error', 'Registrasi pasien gagal ! <br> Periksa kembali form inputan');
+        echo view('frontend/index', $data);
+    }
+
+    private function addAllTable()
+    {
+        $this->addPasien();
+        $this->session->setFlashdata('success', 'Registrasi pasien berhasil !');
+        return redirect()->to('/');
+    }
+
     public function addPasien()
     {
-
-        $kota = $this->request->getVar('pilih') . ' ' . $this->request->getVar('kota');
         $alamat = [
             'alamat' => $this->request->getVar('alamat'),
             'rt' => $this->request->getVar('rt'),
@@ -300,15 +305,14 @@ class Pasien extends BaseController
             'kodepos' => $this->request->getVar('kodepos'),
             'kelurahan' => $this->request->getVar('kelurahan'),
             'kecamatan' => $this->request->getVar('kecamatan'),
-            'kota_kab' => $kota,
+            'kota_kab' => $this->request->getVar('pilih') . ' ' . $this->request->getVar('kota'),
         ];
-        $id_domisili = $this->addAlamat($alamat);
         $no_hp =  $this->request->getVar('no-hp');
         if (substr($no_hp, 0, 1) == 0) {
             $no_hp = "62" . substr($no_hp, 1);
         }
         $data = [
-            'id_domisili' => $id_domisili,
+            'id_domisili' => $this->addAlamat($alamat),
             'id_status' => $this->addStatus(),
             'id_paket' => $this->request->getVar('paket'),
             'id_pj' => $this->addPj(),
@@ -324,14 +328,14 @@ class Pasien extends BaseController
         ];
         $this->model->save($data);
 
-        #cek id domisili pj jika null update id_domisili
-        $idPj = $data['id_pj'];
-        $idDomisiliPj = $this->db->table('penanggung_jawab')->where(['id' => $idPj])->get()->getRowArray();
-        if (!$idDomisiliPj['id_domisili']) {
-            $dataPj = [
-                'id' => $idPj,
-                'id_domisili' => $id_domisili
-            ];
+        #cek domisili pj = domisili pasien
+        if ($data['id_pj']) {
+            $idDomisiliPj = $this->db->table('penanggung_jawab')->where(['id' => $data['id_pj']])->get()->getRowArray();
+            if (!$idDomisiliPj['id_domisili'])
+                $dataPj = [
+                    'id' => $data['id_pj'],
+                    'id_domisili' => $data['id_domisili']
+                ];
             $this->pj->save($dataPj);
         }
     }

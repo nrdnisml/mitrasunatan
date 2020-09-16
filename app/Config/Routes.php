@@ -39,6 +39,7 @@ $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/instansi', 'Instansi::index');
 $routes->get('/instansi/update', 'Instansi::index');
 $routes->get('/paket/delete/(:num)', 'Paket::delete/$1');
+$routes->get('/tambah-pasien', 'Kunjungan::viewAddPasienByAdmin');
 
 
 $routes->post('/profile', 'Profile::update');

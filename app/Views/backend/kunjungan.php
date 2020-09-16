@@ -9,7 +9,7 @@
     <div class="card-header">
         <div class="row text-center d-flex justify-content-center">
             <div class="col-3">
-                <a href="" class="text-decoration-none text-dark">
+                <a href="<?= base_url('/tambah-pasien'); ?>" class="text-decoration-none text-dark">
                     <div class="info-box bg-primary">
                         <span class="info-box-icon bg-light"><i class="fas fa-user-plus"></i></span>
                         <div class="info-box-content">

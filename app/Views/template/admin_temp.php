@@ -26,6 +26,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title><?= $title; ?></title>
+    <!-- stepper -->
+    <link rel="stylesheet" href="<?= base_url('assets') ?>/css/bs-stepper.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <!-- datatable -->
@@ -34,6 +36,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="<?= base_url('assets') ?>/vendor/adminlte/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- dropify -->
     <link rel="stylesheet" href="<?= base_url('assets') ?>/css/dropify.css">
     <!-- Select2 -->
@@ -42,6 +45,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- FOR GALERI -->
     <link rel="stylesheet" href="<?= base_url('assets') ?>/vendor/adminlte/dist/css/adminlte.min.css">
     <link href="<?= base_url('assets') ?>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <?= $this->renderSection('css'); ?>
 
 
 </head>
@@ -221,6 +225,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="<?= base_url('assets') ?>/vendor/adminlte/plugins/chart.js/Chart.min.js"></script>
     <!-- dropify -->
     <script src="<?= base_url('assets') ?>/js/dropify.js"></script>
+    <!-- stepper -->
+    <script src="<?= base_url('assets') ?>/js/bs-stepper.min.js"></script>
 
     <script>
         $("#tabel").DataTable();

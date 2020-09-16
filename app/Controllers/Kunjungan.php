@@ -3,13 +3,18 @@
 namespace App\Controllers;
 
 use App\Models\KunjunganModel;
+use App\Models\PaketModel;
+use App\Controllers\Pasien;
 
 class Kunjungan extends BaseController
 {
     public function __construct()
     {
         $this->model = new KunjunganModel();
+        $this->cPasien = new Pasien();
+        $this->paket = new PaketModel();
     }
+
     public function index()
     {
         $kunjungan = $this->db->table('kunjungan')->select('*,kunjungan.id as id_kunjungan')
@@ -76,5 +81,16 @@ class Kunjungan extends BaseController
             $this->session->setFlashdata('success', 'Pasien Kontrol berhasil ditambahkan !');
             return redirect()->to('/kunjungan');
         }
+    }
+
+    public function viewAddPasienByAdmin()
+    {
+        $data = [
+            'title' => 'Tambah Pasien',
+            'path' => 'Tambah Pasien',
+            'paket' => $this->paket->findAll()
+        ];
+
+        echo view('backend/tambahPasien', $data);
     }
 }

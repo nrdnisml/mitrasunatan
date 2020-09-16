@@ -179,13 +179,15 @@ helper('global'); ?>
 
                         <div class="row">
                             <div class="col">
-                                <a href="<?= base_url('/pendaftar/invoice'); ?>" class="btn btn-primary btn-block"><i class="fas fa-receipt"></i></a>
+                                <a href="<?= base_url('/pendaftar/invoice'); ?>" class="btn btn-primary btn-block">
+                                    <span>Invoice </span><i class="fas fa-receipt"></i>
+                                </a>
                             </div>
                             <div class="col">
-                                <a href="#" class="btn btn-warning btn-block wa"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#" class="btn btn-success btn-block wa"><span>Whatsapp </span><i class="fab fa-whatsapp"></i></a>
                             </div>
                             <div class="col">
-                                <a href="#" class="btn btn-success btn-block email"><i class="fas fa-envelope"></i></a>
+                                <a href="#" class="btn btn-warning btn-block email"><span>Email </span><i class="fas fa-envelope"></i></a>
                             </div>
                         </div>
                     </div>

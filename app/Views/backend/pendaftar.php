@@ -45,7 +45,7 @@
                                         <a href="<?= base_url('/pendaftar/invoice'); ?>/<?= $p['id_pasien']; ?>" class="btn btn-sm btn-primary mt-1"><i class="fas fa-receipt"></i></a>
                                     </div>
                                     <div class="col-sm-12 col-md-4">
-                                        <a href="<?= base_url('/pendaftar/editBooking'); ?>/<?= $p['id_pasien']; ?>" data-id="<?= $p['id_pasien'] ?>" data-toggle="modal" data-target="#bookingModal" class="btn btn-sm btn-warning mt-1 tombol-edit"><i class="fas fa-edit"></i></a>
+                                        <a href="<?= base_url('/pendaftar/editBooking'); ?>/<?= $p['id_pasien']; ?>" data-id="<?= $p['id_pasien'] ?>" data-toggle="modal" data-target="#bookingModal" class="btn btn-sm btn-warning mt-1 tombol-edit"> <i class="fas fa-edit"></i></a>
                                     </div>
                                     <div class="col-sm-12 col-md-4">
                                         <a href="<?= base_url('/pendaftar/delete'); ?>/<?= $p['id_pasien']; ?>" class="tombol-hapus btn btn-sm btn-danger mt-1"><i class="fas fa-trash"></i></a>
@@ -90,7 +90,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><b>Detail Calon Pasien</b></h5>
+                <h5 class="modal-title judul" id="exampleModalLabel"><b>Detail Calon Pasien</b></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -186,7 +186,7 @@
 
     $('.tombol-detail').on('click', function() {
         const id = $(this).data('id');
-        $('.modal-title').html("Detail Pendaftar");
+        $('.judul').html("Detail Pendaftar");
         $.ajax({
             url: '<?= base_url('/pendaftar/jsonData'); ?>/' + id,
             data: {
