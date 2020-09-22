@@ -3,6 +3,7 @@
 <link href="<?= base_url('assets') ?>/css/style.css" rel="stylesheet">
 <?= $this->endSection(); ?>
 <?= $this->section('content'); ?>
+<div class="flash-data" data-flashdata="<?= session()->getFlashdata('error'); ?>"></div>
 <div class="card card-primary card-outline">
     <div class="card-body box-profile">
         <div class="bs-stepper" id="stepper">

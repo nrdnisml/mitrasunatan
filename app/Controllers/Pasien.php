@@ -7,6 +7,7 @@ use App\Models\PasienModel;
 use App\Models\AlamatModel;
 use App\Models\PjModel;
 use App\Models\StatusModel;
+use App\Controllers\Pendaftar;
 
 class Pasien extends BaseController
 {
@@ -66,13 +67,6 @@ class Pasien extends BaseController
                 'required' => 'Field pendidikan wajib diisi'
             ]
         ],
-        'email' => [
-            'rules' => 'required|valid_email',
-            'errors' => [
-                'required' => 'Field email wajib diisi',
-                'valid_email' => 'Email tidak valid'
-            ]
-        ],
         'alamat' => [
             'rules' => 'required',
             'errors' => [
@@ -94,9 +88,8 @@ class Pasien extends BaseController
             ]
         ],
         'kodepos' => [
-            'rules' => 'required|numeric',
+            'rules' => 'numeric',
             'errors' => [
-                'required' => 'Field kodepos wajib diisi',
                 'numeric' => 'Kodepos harus berupa nomor'
             ]
         ],
@@ -110,12 +103,6 @@ class Pasien extends BaseController
             'rules' => 'required',
             'errors' => [
                 'required' => 'Field kecamatan wajib diisi'
-            ]
-        ],
-        'pilih' => [
-            'rules' => 'required',
-            'errors' => [
-                'required' => 'Silahkan pilih salah satu'
             ]
         ],
         'kota' => [
@@ -165,7 +152,7 @@ class Pasien extends BaseController
             'pasien' => $this->getData(),
         ];
 
-        echo view('backend/pasien/pasien', $data);
+        echo view('backend/pasien', $data);
     }
 
     ####################################### GET DATA PASIEN #######################################
@@ -234,7 +221,7 @@ class Pasien extends BaseController
             'gol_dar' => $data['gol_dar'],
             'booking' => $tgl_booking,
             'agama' => $data['agama'],
-            'alamat' => $data['alamat'] . " RT " . $data['rt'] . " RW " . $data['rw'] . " Kel. " . $data['kelurahan'] . " Kec. " . $data['kecamatan'] . " " . $data['kota_kab'],
+            'alamat' => $data['alamat'] . " RT " . $data['rt'] . " RW " . $data['rw'] . " Kel. " . $data['kelurahan'] . " Kec. " . $data['kecamatan'] . " " . $data['kota_kab'] . " (" . $data['kodepos'] . ")",
             'tgl_daftar' => $tgl_daftar_indo,
             'tgl_sunat' => $tgl_booking_indo,
             'layanan' => "Sunat di " . $data['layanan'],
@@ -248,7 +235,7 @@ class Pasien extends BaseController
         } else {
             $alamatPj = $this->getAlamatPJ($data['id_domisili_pj']);
             $pj = [
-                'alamat_pj' => $alamatPj['alamat_pj'] . " RT " . $alamatPj['rt_pj'] . " RW " . $alamatPj['rw_pj'] . " Kel. " . $alamatPj['kelurahan_pj'] . " Kec. " . $alamatPj['kecamatan_pj'] . " " . $alamatPj['kota_pj'],
+                'alamat_pj' => $alamatPj['alamat_pj'] . " RT " . $alamatPj['rt_pj'] . " RW " . $alamatPj['rw_pj'] . " KEL. " . $alamatPj['kelurahan_pj'] . " KEC. " . $alamatPj['kecamatan_pj'] . " " . $alamatPj['kota_pj'] . " (" . $alamatPj['kodepos'] . ")",
                 'nama_pj' => $data['nama_pj'],
                 'hubungan' => $data['hubungan']
             ];
@@ -257,6 +244,49 @@ class Pasien extends BaseController
         }
     }
 
+
+    ####################################### CRUD DATA BY ADMIN #######################################
+    public function addByAdmin()
+    {
+        $pj = $this->request->getVar('hubungan');
+        if ($pj == "Mandiri") {
+            if (!$this->validate($this->validation)) {
+                return $this->validasiDataByAdmin();
+            } else {
+                return $this->addDataByAdmin();
+            }
+        } else {
+            if (!$this->validate(array_merge($this->validation, $this->val_pj))) {
+                return $this->validasiDataByAdmin();
+            } else {
+                return $this->addDataByAdmin();
+            }
+        }
+    }
+
+    private function addDataByAdmin()
+    {
+        $this->cPendaftar = new Pendaftar();
+        $this->addPasien();
+        #ambil id dari pasien yang ditambahkan kemudian confirm
+        $id = $this->db->table('pasien')->selectMax('id')->get()->getRowArray();
+        $this->cPendaftar->confirmProcess($id['id']);
+        $this->session->setFlashdata('success', 'Registrasi pasien berhasil !');
+        return redirect()->to('/pasien');
+    }
+
+    private function validasiDataByAdmin()
+    {
+        $data = [
+            'title' => 'Tambah Pasien',
+            'path' => 'Tambah Pasien',
+            'pasien' => $this->model->findAll(),
+            'paket' => $this->paket->findAll(),
+            'validation' => $this->validator
+        ];
+        $this->session->setFlashdata('error', 'Registrasi pasien gagal ! <br> Periksa kembali form inputan');
+        echo view('backend/tambahPasien', $data);
+    }
 
     ####################################### CRUD DATA PASIEN #######################################
 
@@ -305,7 +335,7 @@ class Pasien extends BaseController
             'kodepos' => $this->request->getVar('kodepos'),
             'kelurahan' => $this->request->getVar('kelurahan'),
             'kecamatan' => $this->request->getVar('kecamatan'),
-            'kota_kab' => $this->request->getVar('pilih') . ' ' . $this->request->getVar('kota'),
+            'kota_kab' => $this->request->getVar('kota'),
         ];
         $no_hp =  $this->request->getVar('no-hp');
         if (substr($no_hp, 0, 1) == 0) {
@@ -348,7 +378,6 @@ class Pasien extends BaseController
             return null;
         } else {
             if ($this->request->getVar('alamat-pj')) {
-                $kota = $this->request->getVar('pilih-pj') . ' ' . $this->request->getVar('kota-pj');
                 $alamat = [
                     'alamat' => $this->request->getVar('alamat-pj'),
                     'rt' => $this->request->getVar('rt-pj'),
@@ -356,7 +385,7 @@ class Pasien extends BaseController
                     'kodepos' => $this->request->getVar('kodepos-pj'),
                     'kelurahan' => $this->request->getVar('kelurahan-pj'),
                     'kecamatan' => $this->request->getVar('kecamatan-pj'),
-                    'kota_kab' => $kota,
+                    'kota_kab' => $this->request->getVar('kota-pj'),
                 ];
                 $id_domisili = $this->addAlamat($alamat);
             } else {
@@ -393,10 +422,6 @@ class Pasien extends BaseController
         $this->status->save($data);
         $id = $this->db->table('status')->selectMax('id')->get()->getResultArray();
         return $id[0];
-    }
-
-    public function addPasienControl($rm)
-    {
     }
 
     public function delete($id)

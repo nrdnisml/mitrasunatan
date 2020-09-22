@@ -119,8 +119,8 @@
                         <option value="Sudah Menikah" <?= set_select('s_nikah', 'Sudah Menikah'); ?>>Sudah Menikah</option>
                         <option value="Belum Menikah" <?= set_select('s_nikah', 'Belum Menikah'); ?>>Belum Menikah</option>
                       </select>
-
                     </div>
+
                   </div>
                 </div>
                 <div class="form-group">
@@ -209,6 +209,65 @@
 
                 <p class="h5">Alamat Pasien</p>
                 <div class="line my-3"></div>
+
+                <div class="form-group">
+                  <label for="kodepos">Kodepos</label>
+                  <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('kodepos') ? 'is-invalid' : ''; ?>" id="kodepos" name="kodepos" value="<?= set_value('kodepos') ?>">
+                  <div class=" invalid-feedback">
+                    <?= isset($validation) ? $validation->showError('kodepos') : ''; ?>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-12 col-md-4 mb-3 mb-sm-0" id="input-kelurahan">
+                    <label for="kelurahan">Kelurahan</label>
+                    <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('kelurahan') ? 'is-invalid' : ''; ?>" id="kelurahan" name="kelurahan" value="<?= set_value('kelurahan') ?>">
+                    <div class=" invalid-feedback">
+                      <?= isset($validation) ? $validation->showError('kelurahan') : ''; ?>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-md-4 mb-3 mb-sm-0" id="select-kelurahan">
+                    <label>Kelurahan</label>
+                    <select id="kelurahan-s" class="custom-select">
+                      <option value="Sudah Menikah" <?= set_select('kelurahan', 'Sudah Menikah'); ?>>Sudah Menikah</option>
+                      <option value="Belum Menikah" <?= set_select('kelurahan', 'Belum Menikah'); ?>>Belum Menikah</option>
+                    </select>
+                  </div>
+
+                  <div class="col-sm-12 col-md-4">
+                    <label for="kecamatan">Kecamatan</label>
+                    <input type="text" class="form-control form-control-user <?= isset($validation) && $validation->showError('kecamatan') ? 'is-invalid' : ''; ?>" id="kecamatan" name="kecamatan" value="<?= set_value('kecamatan') ?>">
+                    <div class=" invalid-feedback">
+                      <?= isset($validation) ? $validation->showError('kecamatan') : ''; ?>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12 col-md-4">
+                    <label for="kota">Nama Kota / Kabupaten</label>
+                    <input type="text" class="form-control form-control-user <?= isset($validation) && $validation->showError('kota') ? 'is-invalid' : ''; ?>" id="kota" name="kota" value="<?= set_value('kota') ?>">
+                    <div class=" invalid-feedback">
+                      <?= isset($validation) ? $validation->showError('kota') : ''; ?>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <label for="rt">RT</label>
+                    <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('rt') ? 'is-invalid' : ''; ?>" id="rt" name="rt" value="<?= set_value('rt') ?>">
+                    <div class=" invalid-feedback">
+                      <?= isset($validation) ? $validation->showError('rt') : ''; ?>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <label for="rw">RW</label>
+                    <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('rw') ? 'is-invalid' : ''; ?>" id="rw" name="rw" value="<?= set_value('rw') ?>">
+                    <div class=" invalid-feedback">
+                      <?= isset($validation) ? $validation->showError('rw') : ''; ?>
+                    </div>
+                  </div>
+                </div>
                 <div class="form-group">
                   <label for="alamat">Alamat</label>
                   <input type="text" class="form-control form-control-user <?= isset($validation) && $validation->showError('alamat') ? 'is-invalid' : ''; ?>" id="alamat" name="alamat" placeholder="JL. lorem, No. 01" value="<?= set_value('alamat') ?>">
@@ -217,62 +276,7 @@
                     <?= isset($validation) ? $validation->showError('alamat') : ''; ?>
                   </div>
                 </div>
-                <div class="form-group row">
-                  <div class="col-sm-4 mb-3 mb-sm-0">
-                    <label for="rt">RT</label>
-                    <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('rt') ? 'is-invalid' : ''; ?>" id="rt" name="rt" value="<?= set_value('rt') ?>">
-                    <div class=" invalid-feedback">
-                      <?= isset($validation) ? $validation->showError('rt') : ''; ?>
-                    </div>
-                  </div>
-                  <div class="col-sm-4 mb-3 mb-sm-0">
-                    <label for="rw">RW</label>
-                    <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('rw') ? 'is-invalid' : ''; ?>" id="rw" name="rw" value="<?= set_value('rw') ?>">
-                    <div class=" invalid-feedback">
-                      <?= isset($validation) ? $validation->showError('rw') : ''; ?>
-                    </div>
-                  </div>
-                  <div class="col-sm-4 mb-3 mb-sm-0">
-                    <label for="kodepos">Kodepos</label>
-                    <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('kodepos') ? 'is-invalid' : ''; ?>" id="kodepos" name="kodepos" value="<?= set_value('kodepos') ?>">
-                    <div class=" invalid-feedback">
-                      <?= isset($validation) ? $validation->showError('kodepos') : ''; ?>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    <label for="kelurahan">Kelurahan</label>
-                    <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('kelurahan') ? 'is-invalid' : ''; ?>" id="kelurahan" name="kelurahan" value="<?= set_value('kelurahan') ?>">
-                    <div class=" invalid-feedback">
-                      <?= isset($validation) ? $validation->showError('kelurahan') : ''; ?>
-                    </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <label for="kecamatan">Kecamatan</label>
-                    <input type="text" class="form-control form-control-user <?= isset($validation) && $validation->showError('kecamatan') ? 'is-invalid' : ''; ?>" id="kecamatan" name="kecamatan" value="<?= set_value('kecamatan') ?>">
-                    <div class=" invalid-feedback">
-                      <?= isset($validation) ? $validation->showError('kecamatan') : ''; ?>
-                    </div>
-                  </div>
-                </div>
 
-                <div class="form-group row">
-                  <div class="col-sm-6 mb-3">
-                    <label for=""> Pilih </label>
-                    <select class="custom-select" name="pilih">
-                      <option value="Kota" <?= set_select('pilih', 'Kota'); ?>>Kota</option>
-                      <option value="Kabupaten" <?= set_select('pilih', 'Kabupaten'); ?>>Kabupaten</option>
-                    </select>
-                  </div>
-                  <div class="col-sm-6 mb-3 ">
-                    <label for="kota">Nama Kota / Kabupaten</label>
-                    <input type="text" class="form-control form-control-user <?= isset($validation) && $validation->showError('kota') ? 'is-invalid' : ''; ?>" id="kota" name="kota" value="<?= set_value('kota') ?>">
-                    <div class=" invalid-feedback">
-                      <?= isset($validation) ? $validation->showError('kota') : ''; ?>
-                    </div>
-                  </div>
-                </div>
 
                 <p class="h5">Kontak yang bisa dihubungi</p>
                 <div class="line my-3"></div>
@@ -316,68 +320,72 @@
                 </div>
                 <div class="alamat-group">
                   <div class="form-group">
-                    <label for="alamat-pj">Alamat</label>
-                    <input type="text" class="form-control form-control-user <?= isset($validation) && $validation->showError('alamat-pj') ? 'is-invalid' : ''; ?>" id="alamat-pj" name="alamat-pj" placeholder="JL. lorem, No. 01" value="<?= set_value('alamat-pj') ?>">
-                    <div class="small ml-1">Isi dengan nomor rumah, blok, nama jalan, dsb.</div>
+                    <label for="kodepos-pj">Kodepos</label>
+                    <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('kodepos-pj') ? 'is-invalid' : ''; ?>" id="kodepos-pj" name="kodepos-pj" value="<?= set_value('kodepos-pj') ?>">
                     <div class=" invalid-feedback">
-                      <?= isset($validation) ? $validation->showError('alamat-pj') : ''; ?>
+                      <?= isset($validation) ? $validation->showError('kodepos-pj') : ''; ?>
                     </div>
                   </div>
+
                   <div class="form-group row">
-                    <div class="col-sm-4 mb-3 mb-sm-0">
-                      <label for="rt-pj">RT</label>
-                      <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('rt-pj') ? 'is-invalid' : ''; ?>" id="rt-pj" name="rt-pj" value="<?= set_value('rt-pj') ?>">
-                      <div class=" invalid-feedback">
-                        <?= isset($validation) ? $validation->showError('rt-pj') : ''; ?>
-                      </div>
-                    </div>
-                    <div class="col-sm-4 mb-3 mb-sm-0">
-                      <label for="rw-pj">RW</label>
-                      <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('rw-pj') ? 'is-invalid' : ''; ?>" id="rw-pj" name="rw-pj" value="<?= set_value('rw-pj') ?>">
-                      <div class=" invalid-feedback">
-                        <?= isset($validation) ? $validation->showError('rw-pj') : ''; ?>
-                      </div>
-                    </div>
-                    <div class="col-sm-4 mb-3 mb-sm-0">
-                      <label for="kodepos-pj">Kodepos</label>
-                      <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('kodepos-pj') ? 'is-invalid' : ''; ?>" id="kodepos-pj" name="kodepos-pj" value="<?= set_value('kodepos-pj') ?>">
-                      <div class=" invalid-feedback">
-                        <?= isset($validation) ? $validation->showError('kodepos-pj') : ''; ?>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="col-sm-12 col-md-4 mb-3 mb-sm-0" id="input-kelurahan-pj">
                       <label for="kelurahan-pj">Kelurahan</label>
-                      <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('kelurahan-pj') ? 'is-invalid' : ''; ?>" id="kelurahan-pj" name="kelurahan-pj" value="<?= set_value('kelurahan-pj') ?>">
+                      <input type="text" class="form-control form-control-user <?= isset($validation) && $validation->showError('kelurahan-pj') ? 'is-invalid' : ''; ?>" id="kelurahan-pj" name="kelurahan-pj" value="<?= set_value('kelurahan-pj') ?>">
                       <div class=" invalid-feedback">
                         <?= isset($validation) ? $validation->showError('kelurahan-pj') : ''; ?>
                       </div>
                     </div>
-                    <div class="col-sm-6">
+
+                    <div class="col-sm-12 col-md-4 mb-3 mb-sm-0" id="select-kelurahan-pj">
+                      <label>Kelurahan</label>
+                      <select id="kelurahan-s-pj" class="custom-select">
+                        <option value="Sudah Menikah" <?= set_select('kelurahan', 'Sudah Menikah'); ?>>Sudah Menikah</option>
+                        <option value="Belum Menikah" <?= set_select('kelurahan', 'Belum Menikah'); ?>>Belum Menikah</option>
+                      </select>
+                    </div>
+
+                    <div class="col-sm-12 col-md-4">
                       <label for="kecamatan-pj">Kecamatan</label>
                       <input type="text" class="form-control form-control-user <?= isset($validation) && $validation->showError('kecamatan-pj') ? 'is-invalid' : ''; ?>" id="kecamatan-pj" name="kecamatan-pj" value="<?= set_value('kecamatan-pj') ?>">
                       <div class=" invalid-feedback">
                         <?= isset($validation) ? $validation->showError('kecamatan-pj') : ''; ?>
                       </div>
                     </div>
-                  </div>
-                  <div class="form-group row">
-                    <div class="col-sm-6 mb-3">
-                      <label for=""> Pilih </label>
-                      <select class="custom-select" name="pilih-pj">
-                        <option value="Kota" <?= set_select('pilih-pj', 'Kota'); ?>>Kota</option>
-                        <option value="Kabupaten" <?= set_select('pilih-pj', 'Kabupaten'); ?>>Kabupaten</option>
-                      </select>
-                    </div>
-                    <div class="col-sm-6 mb-3 ">
+
+                    <div class="col-sm-12 col-md-4">
                       <label for="kota-pj">Nama Kota / Kabupaten</label>
-                      <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('kota-pj') ? 'is-invalid' : ''; ?>" id="kota-pj" name="kota-pj" value="<?= set_value('kota-pj') ?>">
+                      <input type="text" class="form-control form-control-user <?= isset($validation) && $validation->showError('kota-pj') ? 'is-invalid' : ''; ?>" id="kota-pj" name="kota-pj" value="<?= set_value('kota-pj') ?>">
                       <div class=" invalid-feedback">
                         <?= isset($validation) ? $validation->showError('kota-pj') : ''; ?>
                       </div>
                     </div>
                   </div>
+
+                  <div class="form-group row">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label for="rt-pj">RT</label>
+                      <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('rt-pj') ? 'is-invalid' : ''; ?>" id="rt-pj" name="rt-pj" value="<?= set_value('rt-pj') ?>">
+                      <div class=" invalid-feedback">
+                        <?= isset($validation) ? $validation->showError('rt-pj') : ''; ?>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                      <label for="rw-pj">RW</label>
+                      <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('rw-pj') ? 'is-invalid' : ''; ?>" id="rw-pj" name="rw-pj" value="<?= set_value('rw-pj') ?>">
+                      <div class=" invalid-feedback">
+                        <?= isset($validation) ? $validation->showError('rw-pj') : ''; ?>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="alamat-pj">Alamat</label>
+                    <input type="text" class="form-control form-control-user <?= isset($validation) && $validation->showError('alamat-pj') ? 'is-invalid' : ''; ?>" id="-pjalamat" name="-pjalamat" placeholder="JL. lorem, No. 01" value="<?= set_value('alamat-pj') ?>">
+                    <div class="small d-inline">Isi dengan nomor rumah, blok, nama jalan, dsb.</div>
+                    <div class=" invalid-feedback">
+                      <?= isset($validation) ? $validation->showError('alamat-pj') : ''; ?>
+                    </div>
+                  </div>
+
                 </div>
               </div>
               <div class="container">
@@ -580,6 +588,98 @@
         $('.hrg-anak').html(data.harga_anak);
         $('.hrg-dewasa').html(data.harga_dewasa);
       }
+    });
+  });
+
+  $(document).ready(function() {
+    let dropdownCol = $('#select-kelurahan');
+    let dropdown = $('#kelurahan-s');
+    let iText = $('#input-kelurahan');
+    dropdownCol.hide();
+
+    $('#kodepos').on('change', function() {
+      const kodepos = $('#kodepos').val();
+      $.ajax({
+        url: '<?= base_url('/Pendaftar/jsonAlamatByKodePos'); ?>/' + kodepos,
+        data: {
+          kodepos: kodepos
+        },
+        method: 'get',
+        dataType: 'json',
+        success: function(data) {
+          if (data.length > 1) {
+            //1. cek jika data lebih dari 1 maka ubah input text menjadi select options untuk kelurahan, field lain index - 0
+            dropdownCol.show();
+            iText.hide();
+            //2. hps atrribute name pada input-kelurahan, tambahkan attr name kelurahan pada dropdown
+            $('#kelurahan').attr('name', '');
+            $('#kelurahan-s').attr('name', 'kelurahan');
+            // 3. Kosongkan option pada menu dropdown
+            dropdown.empty();
+            // 4, append data json ke option value
+            $.each(data, function(key, entry) {
+              dropdown.append($('<option <?= set_select("kelurahan", 'entry.kelurahan'); ?>></option>').attr('value', entry.kelurahan).text(entry.kelurahan));
+            });
+            $('#kecamatan').val(data[0].kecamatan);
+            $('#kota').val(data[0].kabupaten);
+          } else {
+            dropdownCol.hide();
+            iText.show();
+            $('#kelurahan').attr('name', 'kelurahan');
+            $('#kelurahan-s').attr('name', '');
+            $('#kelurahan').val(data[0].kelurahan);
+            $('#kecamatan').val(data[0].kecamatan);
+            $('#kota').val(data[0].kabupaten);
+          }
+          console.log(data.length);
+        }
+      });
+    });
+  });
+
+  $(document).ready(function() {
+    let dropdownCol = $('#select-kelurahan-pj');
+    let dropdown = $('#kelurahan-s-pj');
+    let iText = $('#input-kelurahan-pj');
+    dropdownCol.hide();
+
+    $('#kodepos-pj').on('change', function() {
+      const kodepos = $('#kodepos-pj').val();
+      $.ajax({
+        url: '<?= base_url('/Pendaftar/jsonAlamatByKodePos'); ?>/' + kodepos,
+        data: {
+          kodepos: kodepos
+        },
+        method: 'get',
+        dataType: 'json',
+        success: function(data) {
+          if (data.length > 1) {
+            //1. cek jika data lebih dari 1 maka ubah input text menjadi select options untuk kelurahan, field lain index - 0
+            dropdownCol.show();
+            iText.hide();
+            //2. hps atrribute name pada input-kelurahan, tambahkan attr name kelurahan pada dropdown
+            $('#kelurahan-pj').attr('name', '');
+            dropdown.attr('name', 'kelurahan');
+            // 3. Kosongkan option pada menu dropdown
+            dropdown.empty();
+            // 4, append data json ke option value
+            $.each(data, function(key, entry) {
+              dropdown.append($('<option <?= set_select("kelurahan-pj", 'entry.kelurahan-pj'); ?>></option>').attr('value', entry.kelurahan).text(entry.kelurahan));
+            });
+            $('#kecamatan-pj').val(data[0].kecamatan);
+            $('#kota-pj').val(data[0].kabupaten);
+          } else {
+            dropdownCol.hide();
+            iText.show();
+            $('#kelurahan-pj').attr('name', 'kelurahan-pj');
+            $('#kelurahan-s-pj').attr('name', '');
+            $('#kelurahan-pj').val(data[0].kelurahan);
+            $('#kecamatan-pj').val(data[0].kecamatan);
+            $('#kota-pj').val(data[0].kabupaten);
+          }
+          console.log(data.length);
+        }
+      });
     });
   });
 </script>

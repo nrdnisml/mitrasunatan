@@ -1,5 +1,4 @@
 <?= $this->extend('template/admin_temp'); ?>
-
 <?= $this->section('content'); ?>
 <?php $this->db = \Config\Database::connect();
 helper('global'); ?>

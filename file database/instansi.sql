@@ -1,1 +1,0 @@
-INSERT INTO `instansi` VALUES (7, 'Mitra Sunatan', '1599550207_3ffafba7d062c653d30c.jpg', '092333', 'mitrasunatan@gmail.com', 'Kabupaten Probolinggo', 'Desa Muneng', 'Sumberasih', 'Jl. Kalimas no 1231');

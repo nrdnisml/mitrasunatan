@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\StatusModel;
-use App\Models\PasienModel;
 use App\Controllers\Kunjungan;
 
 class Pendaftar extends BaseController
@@ -11,8 +10,8 @@ class Pendaftar extends BaseController
     public function __construct()
     {
         $this->cKunjungan = new Kunjungan();
-        $this->pasien = new PasienModel();
         $this->status = new StatusModel();
+        $this->db = \Config\Database::connect();
         helper('global');
     }
 
@@ -59,6 +58,21 @@ class Pendaftar extends BaseController
         }
     }
 
+    public function getAlamatByKodePos($kodepos)
+    {
+        if ($kodepos) {
+            $query = $this->db->query('SELECT * FROM `tbl_kodepos` WHERE `kodepos` = ' . $kodepos)->getResultArray();
+            return $query;
+        } else {
+            return null;
+        }
+    }
+
+    public function jsonAlamatByKodePos($kodepos)
+    {
+        echo json_encode($this->getAlamatByKodePos($kodepos));
+    }
+
     public function jsonData($id)
     {
         $data = $this->getData($id);
@@ -86,9 +100,9 @@ class Pendaftar extends BaseController
         echo json_encode($json);
     }
 
-    public function confirm($id)
+    public function confirmProcess($id)
     {
-        $pasien = $this->pasien->find($id);
+        $pasien = $this->db->table('pasien')->getWhere(['id' => $id])->getRowArray();
         $data = [
             'id' => $pasien['id_status'],
             'is_confirm' => 1,
@@ -96,19 +110,23 @@ class Pendaftar extends BaseController
         ];
         $this->status->save($data);
         $this->cKunjungan->addKunjungan($id, "Sunat", date("Y-m-d"));
+    }
+
+    public function confirm($id)
+    {
+        $this->confirmProcess($id);
         $this->session->setFlashdata('success', 'Konfirmasi berhasil !');
         return redirect()->to('/pendaftar');
     }
 
     public function delete($id)
     {
-        $data = $this->pasien->find($id);
+        $data = $this->db->table('pasien')->getWhere(['id' => $id])->getRowArray();
         $id_pj = $data['id_pj'];
         $id_status = $data['id_status'];
         $id_domisili = $data['id_domisili'];
 
-        $this->pasien->delete($id);
-        $this->pasien->delete($id);
+        $this->db->table('pasien')->delete(['id' => $id]);
         $this->db->table('penanggung_jawab')->where('id', $id_pj)->delete();
         $this->db->table('status')->where('id', $id_status)->delete();
         $this->db->table('alamat')->where('id', $id_domisili)->delete();
@@ -120,7 +138,7 @@ class Pendaftar extends BaseController
     public function setRm($id)
     {
         $nomor = "0000";
-        $data = $this->pasien->find($id);
+        $data = $this->db->table('pasien')->getWhere(['id' => $id])->getRowArray();
         $thn_daftar = substr($data['created_at'], 2, 2);
         $thn_lahir = substr($data['tgl_lahir'], 2, 2);
         $no_rm = $thn_daftar . $thn_lahir . substr($nomor, strlen($id), 4) . $id;
@@ -129,7 +147,7 @@ class Pendaftar extends BaseController
 
     public function editBooking($id)
     {
-        $pasien = $this->pasien->find($id);
+        $pasien = $this->db->table('pasien')->getWhere(['id' => $id])->getRowArray();
         $idStatus = $this->status->where('id', $pasien['id_status'])->findColumn('id');
         $data = [
             'id' => $idStatus[0],
