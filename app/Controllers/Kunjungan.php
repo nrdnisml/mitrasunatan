@@ -15,18 +15,43 @@ class Kunjungan extends BaseController
         $this->paket = new PaketModel();
     }
 
-    public function index()
+    public function index($day = null)
     {
-        $kunjungan = $this->db->table('kunjungan')->select('*,kunjungan.id as id_kunjungan')
-            ->join('pasien', 'pasien.id = kunjungan.id_pasien')
-            ->join('status', 'pasien.id_status = status.id')
-            ->get()->getResultArray();
+        if ($day == 1) {
+            $kunjungan = $this->db->query('SELECT *,`kunjungan`.`id` as `id_kunjungan` from `kunjungan` 
+            JOIN `pasien` on `pasien`.`id` = `kunjungan`.`id_pasien`
+            JOIN `status`on `pasien`.`id_status` = `status`.`id`
+            WHERE DATE(`tgl_kunjungan`) = CURDATE()')->getResultArray();
+        } elseif ($day == 7) {
+            $kunjungan = $this->db->query('SELECT *,`kunjungan`.`id` as `id_kunjungan` from `kunjungan` 
+            JOIN `pasien` on `pasien`.`id` = `kunjungan`.`id_pasien`
+            JOIN `status`on `pasien`.`id_status` = `status`.`id`
+            WHERE YEARWEEK(`tgl_kunjungan`) = YEARWEEK(NOW())')->getResultArray();
+        } else {
+            $kunjungan = $this->db->table('kunjungan')->select('*,kunjungan.id as id_kunjungan')
+                ->join('pasien', 'pasien.id = kunjungan.id_pasien')
+                ->join('status', 'pasien.id_status = status.id')
+                ->get()->getResultArray();
+        }
+
         $data = [
             'title' => 'Kunjungan Pasien',
             'path' => 'Kunjungan',
             'kunjungan' => $kunjungan
         ];
         echo view('backend/kunjungan', $data);
+    }
+
+    public function excel()
+    {
+        $kunjungan = $this->db->table('kunjungan')->select('*,kunjungan.id as id_kunjungan')
+            ->join('pasien', 'pasien.id = kunjungan.id_pasien')
+            ->join('status', 'pasien.id_status = status.id')
+            ->get()->getResultArray();
+        $data = [
+            'data' => $kunjungan
+        ];
+        echo view('backend/excel/kunjungan', $data);
     }
 
     public function addKunjungan($id, $kunjungan, $tgl)

@@ -37,9 +37,13 @@ $routes->get('/logout', 'Auth::logout');
 $routes->get('/register', 'Home::register');
 $routes->get('/dashboard', 'Dashboard::index');
 $routes->get('/instansi', 'Instansi::index');
+$routes->get('/keuangan', 'Keuangan::index');
+$routes->get('/keuangan/(:num)', 'Keuangan::index/$1');
 $routes->get('/pasien', 'Pasien::index');
+$routes->get('/pasien/(:num)', 'Pasien::index/$1');
 $routes->get('/instansi/update', 'Instansi::index');
 $routes->get('/paket/delete/(:num)', 'Paket::delete/$1');
+$routes->get('/kunjungan/(:num)', 'Kunjungan::index/$1');
 $routes->get('/tambah-pasien', 'Kunjungan::viewAddPasienByAdmin');
 
 

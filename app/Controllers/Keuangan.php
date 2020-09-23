@@ -12,15 +12,31 @@ class Keuangan extends BaseController
         $this->db = \Config\Database::connect();
     }
 
-    public function index()
+    public function index($day = null)
     {
+        if ($day == 1) {
+            $keuangan = $this->db->query('SELECT * FROM `income` WHERE DATE(`created_at`) = CURDATE()')->getResultArray();
+        } elseif ($day == 7) {
+            $keuangan = $this->db->query('SELECT * FROM `income` WHERE YEARWEEK(`created_at`) = YEARWEEK(NOW())')->getResultArray();
+        } else {
+            $keuangan = $this->model->findAll();
+        }
         $data = [
             'title' => 'Keuangan',
             'path' => 'Keuangan',
-            'income' => $this->model->findAll()
+            'income' => $keuangan
         ];
 
         echo view('/backend/keuangan', $data);
+    }
+
+    public function excel()
+    {
+        $data = [
+            'data' => $this->model->findAll()
+        ];
+
+        echo view('/backend/excel/keuangan', $data);
     }
 
     public function add()

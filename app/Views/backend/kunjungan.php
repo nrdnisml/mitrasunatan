@@ -4,34 +4,52 @@
 <div class="flash-data-success" data-flashdata="<?= session()->getFlashdata('success'); ?>"></div>
 <div class="flash-data" data-flashdata="<?= session()->getFlashdata('error'); ?>"></div>
 
-
+<div class="row text-center d-flex justify-content-start">
+    <div class="col-3">
+        <a href="<?= base_url('/tambah-pasien'); ?>" class="text-decoration-none text-dark">
+            <div class="info-box bg-primary">
+                <span class="info-box-icon bg-light"><i class="fas fa-user-plus"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Kunjungan</span>
+                    <span class="info-box-number">Pasien Baru</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+        </a>
+    </div>
+    <div class="col-3">
+        <a href="" data-toggle="modal" data-target="#staticBackdrop" class="text-decoration-none text-dark">
+            <div class="info-box bg-info">
+                <span class="info-box-icon bg-light "><i class="fas fa-diagnoses"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Kunjungan</span>
+                    <span class="info-box-number">Pasien Kontrol</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+        </a>
+    </div>
+</div>
 <div class="card card-primary card-outline">
+
     <div class="card-header">
-        <div class="row text-center d-flex justify-content-center">
-            <div class="col-3">
-                <a href="<?= base_url('/tambah-pasien'); ?>" class="text-decoration-none text-dark">
-                    <div class="info-box bg-primary">
-                        <span class="info-box-icon bg-light"><i class="fas fa-user-plus"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Kunjungan</span>
-                            <span class="info-box-number">Pasien Baru</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                </a>
-            </div>
-            <div class="col-3">
-                <a href="" data-toggle="modal" data-target="#staticBackdrop" class="text-decoration-none text-dark">
-                    <div class="info-box bg-info">
-                        <span class="info-box-icon bg-light "><i class="fas fa-diagnoses"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Kunjungan</span>
-                            <span class="info-box-number">Pasien Kontrol</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                </a>
-            </div>
+        <h6 class="">
+            Filter data :
+        </h6>
+        <div class="card-title">
+            <a href="<?= base_url('/kunjungan/1'); ?>" class="btn btn-primary">
+                <i class="fas fa-calendar-day"></i> Hari ini
+            </a>
+            <a href="<?= base_url('/kunjungan/7'); ?>" class="btn btn-success">
+                <i class="fas fa-calendar-week"></i> Minggu ini
+            </a>
+            <a href="<?= base_url('/kunjungan'); ?>" class="btn btn-danger">
+                <i class="fas fa-calendar"></i> Semua tanggal
+            </a>
+        </div>
+        <div class="text-right">
+            <a href="/pengajar/print" class="btn btn-outline-danger"><i class="fas fa-print"></i> Print Data</a>
+            <a href="/kunjungan/excel" class="btn btn-outline-success"><i class="fas fa-file-excel"></i> Export Excel</a>
         </div>
     </div>
     <div class="card-body box-profile">
@@ -57,7 +75,7 @@
                             <?= $k['jns_kunjungan']; ?>
                         </td>
                         <td>
-                            <?= mediumdate_indo($k['tgl_kunjungan']); ?>
+                            <?= longdate_indo($k['tgl_kunjungan']); ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>

@@ -72,7 +72,7 @@
                 </div>
             </div>
             <!-- /.card-header -->
-            <div class="card-body p-0 overflow-auto" style="height: 300px;">
+            <div class="card-body p-0 overflow-auto" style="height: 410px;">
                 <ul class="products-list product-list-in-card pl-2 pr-2">
                     <?php if (!$pendaftar) : ?>
                         <li class="item text-center">

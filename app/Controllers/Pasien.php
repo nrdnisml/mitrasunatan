@@ -150,37 +150,83 @@ class Pasien extends BaseController
         helper('global');
     }
 
-    public function index()
+    public function index($day = null)
     {
+        if ($day == 1) {
+            $query = $this->db->query('SELECT 
+            `pasien`.*,`pasien`.`id` as `id_pasien`, 
+            `status`.*, 
+            `paket`.`nama` as `paket`,
+            `alamat`.*,`penanggung_jawab`.`nama` as `pj`,
+            `penanggung_jawab`.`status` as `hubungan`,`penanggung_jawab`.`nama` as `nama_pj`
+            FROM `pasien` 
+            JOIN `status` on `pasien`.`id_status` = `status`.`id`
+            JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
+            JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
+            LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
+            WHERE `status`.`is_confirm` = 1 AND DATE(`tgl_booking`) = CURDATE()')->getResultArray();
+        } elseif ($day == 7) {
+            $query = $this->db->query('SELECT 
+            `pasien`.*,`pasien`.`id` as `id_pasien`, 
+            `status`.*, 
+            `paket`.`nama` as `paket`,
+            `alamat`.*,`penanggung_jawab`.`nama` as `pj`,
+            `penanggung_jawab`.`status` as `hubungan`,`penanggung_jawab`.`nama` as `nama_pj`
+            FROM `pasien` 
+            JOIN `status` on `pasien`.`id_status` = `status`.`id`
+            JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
+            JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
+            LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
+            WHERE `status`.`is_confirm` = 1 AND YEARWEEK(`tgl_booking`) = YEARWEEK(NOW())')->getResultArray();
+        } else {
+            $query = $this->db->query('SELECT 
+            `pasien`.*,`pasien`.`id` as `id_pasien`, 
+            `status`.*, 
+            `paket`.`nama` as `paket`,
+            `alamat`.*,`penanggung_jawab`.`nama` as `pj`,
+            `penanggung_jawab`.`status` as `hubungan`,`penanggung_jawab`.`nama` as `nama_pj`
+            FROM `pasien` 
+            JOIN `status` on `pasien`.`id_status` = `status`.`id`
+            JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
+            JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
+            LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
+            WHERE `status`.`is_confirm` = 1')->getResultArray();
+        }
         $data = [
             'title' => 'Data Pasien',
             'path' => 'data pasien',
-            'pasien' => $this->getData(),
+            'pasien' => $query
         ];
 
         echo view('backend/pasien', $data);
     }
 
+    public function excel()
+    {
+        $query = $this->db->query('SELECT 
+            `pasien`.*,`pasien`.`id` as `id_pasien`, 
+            `status`.*, 
+            `paket`.`nama` as `paket`,
+            `alamat`.*,`penanggung_jawab`.`nama` as `pj`,
+            `penanggung_jawab`.`status` as `hubungan`,`penanggung_jawab`.`nama` as `nama_pj`
+            FROM `pasien` 
+            JOIN `status` on `pasien`.`id_status` = `status`.`id`
+            JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
+            JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
+            LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
+            WHERE `status`.`is_confirm` = 1')->getResultArray();
+
+        $data = [
+            'data' => $query
+        ];
+        echo view('/backend/excel/pasien', $data);
+    }
+
     ####################################### GET DATA PASIEN #######################################
 
-    public function getData($id = null)
+    public function getData($id)
     {
-        if (!$id) {
-            $query = $this->db->query('SELECT 
-        `pasien`.*,`pasien`.`id` as `id_pasien`, 
-        `status`.*, 
-        `paket`.`nama` as `paket`,
-        `alamat`.*,`penanggung_jawab`.`nama` as `pj`,
-        `penanggung_jawab`.`status` as `hubungan`,`penanggung_jawab`.`nama` as `nama_pj`
-        FROM `pasien` 
-        JOIN `status` on `pasien`.`id_status` = `status`.`id`
-        JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
-        JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
-        LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
-        WHERE `status`.`is_confirm` = 1')->getResultArray();
-            return $query;
-        } else {
-            $query = $this->db->query('SELECT 
+        $query = $this->db->query('SELECT 
         `pasien`.*,`pasien`.`id` as `id_pasien`, 
         `status`.*, 
         `paket`.`nama` as `paket`,
@@ -193,8 +239,7 @@ class Pasien extends BaseController
         JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
         LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
         WHERE `status`.`is_confirm` = 1 AND	`pasien`.`id` = ' . $id)->getRowArray();
-            return $query;
-        }
+        return $query;
     }
 
     public function getAlamatPJ($id)

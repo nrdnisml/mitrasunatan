@@ -4,10 +4,24 @@
 <div class="flash-data-success" data-flashdata="<?= session()->getFlashdata('success'); ?>"></div>
 <div class="card">
     <div class="card-header">
-        <div class="row">
-            <div class="col">
-                <a href="" data-toggle="modal" data-target="#tambahKeuangan" class="btn btn-primary">Tambah Income</a>
-            </div>
+        <h6 class="">
+            Filter data :
+        </h6>
+        <div class="card-title">
+            <a href="<?= base_url('/keuangan/1'); ?>" class="btn btn-primary">
+                <i class="fas fa-calendar-day"></i> Hari ini
+            </a>
+            <a href="<?= base_url('/keuangan/7'); ?>" class="btn btn-success">
+                <i class="fas fa-calendar-week"></i> Minggu ini
+            </a>
+            <a href="<?= base_url('/keuangan'); ?>" class="btn btn-danger">
+                <i class="fas fa-calendar"></i> Semua tanggal
+            </a>
+            <a href="" data-toggle="modal" data-target="#tambahKeuangan" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Income</a>
+        </div>
+        <div class="text-right">
+            <a href="/pengajar/print" class="btn btn-outline-danger"><i class="fas fa-print"></i> Print Data</a>
+            <a href="/keuangan/excel" class="btn btn-outline-success"><i class="fas fa-file-excel"></i> Export Excel</a>
         </div>
     </div>
     <!-- /.card-header -->
@@ -31,7 +45,7 @@
                         <td><?= rupiah($income['total']); ?></td>
                         <td><?= $income['sumber']; ?></td>
                         <td><?= $income['ket']; ?></td>
-                        <td><?= mediumdate_indo($tgl_daftar); ?></td>
+                        <td><?= longdate_indo($tgl_daftar); ?></td>
                         <td>
                             <a href="<?= base_url('/keuangan/delete'); ?>/<?= $income['id']; ?>" class="tombol-hapus btn btn-sm btn-danger mt-1"><i class="fas fa-trash"></i></a>
                         </td>
@@ -65,7 +79,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="income">Income</label>
-                        <input type="text" name="income" id="income" class="form-control">
+                        <input type="number" name="income" id="income" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="sumber">Sumber Income</label>

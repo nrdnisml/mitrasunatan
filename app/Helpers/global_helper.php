@@ -16,7 +16,8 @@ function hitung_umur($tanggal_lahir, $tgl_daftar)
     $y = $today->diff($birthDate)->y;
     $m = $today->diff($birthDate)->m;
     $d = $today->diff($birthDate)->d;
-    return $y . " tahun " . $m . " bulan " . $d . " hari";
+    // return $y . " tahun " . $m . " bulan " . $d . " hari";
+    return $y . " tahun ";
 }
 
 function hitung_umur_tahun($tanggal_lahir, $tgl_daftar)

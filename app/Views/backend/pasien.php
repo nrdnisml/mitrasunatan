@@ -5,7 +5,24 @@ helper('global'); ?>
 <div class="flash-data-success" data-flashdata="<?= session()->getFlashdata('success'); ?>"></div>
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Data Pasien Klinik</h3>
+        <h6 class="">
+            Filter data :
+        </h6>
+        <div class="card-title">
+            <a href="<?= base_url('/pasien/1'); ?>" class="btn btn-primary">
+                <i class="fas fa-calendar-day"></i> Hari ini
+            </a>
+            <a href="<?= base_url('/pasien/7'); ?>" class="btn btn-success">
+                <i class="fas fa-calendar-week"></i> Minggu ini
+            </a>
+            <a href="<?= base_url('/pasien'); ?>" class="btn btn-danger">
+                <i class="fas fa-calendar"></i> Semua tanggal
+            </a>
+        </div>
+        <div class="text-right">
+            <a href="/pengajar/print" class="btn btn-outline-danger"><i class="fas fa-print"></i> Print Data</a>
+            <a href="/pasien/excel" class="btn btn-outline-success"><i class="fas fa-file-excel"></i> Export Excel</a>
+        </div>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -26,7 +43,7 @@ helper('global'); ?>
             <tbody>
                 <?php foreach ($pasien as $p) : ?>
                     <?php
-                    $tgl_daftar = substr($p['created_at'], 0, 10);
+                    $tgl_daftar = substr($p['tgl_booking'], 0, 10);
                     $tgl_lahir = substr($p['tgl_lahir'], 0, 10);
                     $usia = hitung_umur($tgl_lahir, $tgl_daftar);
                     ?>
