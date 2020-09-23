@@ -5,14 +5,20 @@ namespace App\Controllers;
 use App\Models\StatusModel;
 use App\Models\PasienModel;
 use App\Controllers\Kunjungan;
+use App\Controllers\Pendaftar;
+use App\Controllers\Keuangan;
+
 
 class Dashboard extends BaseController
 {
     public function __construct()
     {
         $this->cKunjungan = new Kunjungan();
+        $this->cKeuangan = new Keuangan();
+        $this->cPendaftar = new Pendaftar();
         $this->pasien = new PasienModel();
         $this->status = new StatusModel();
+        $this->db = \Config\Database::connect();
         helper('global');
     }
     public function index()
@@ -28,25 +34,37 @@ class Dashboard extends BaseController
         JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
         JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
         LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
-        WHERE `status`.`is_confirm` = 0')->getResultArray();
+        WHERE `status`.`is_confirm` = 0 ORDER BY `id_pasien` DESC')->getResultArray();
+        $keuangan = $this->db->query('SELECT SUM(income) AS income , CAST(created_at AS Date) as created_at
+        FROM income GROUP by CAST(created_at AS Date)')->getResultArray();
         $data = [
             'title'     => 'Dashboard',
             'path'      => 'Dashboard',
             'n_pasien' => $this->db->table('pasien')->select('id')->countAllResults(),
             'n_kunjungan' => $this->db->table('kunjungan')->select('id')->countAllResults(),
-            'pendaftar' => $pendaftar
+            'pendaftar' => $pendaftar,
+            'keuangan' => $keuangan
         ];
         return view('backend/dashboard', $data);
     }
 
+
     public function confirm($id)
     {
         $pasien = $this->pasien->find($id);
+        $paket = $this->cPendaftar->hargaPaketSunat($id);
+
         $data = [
             'id' => $pasien['id_status'],
             'is_confirm' => 1,
             'no_rm' => $this->setRm($id)
         ];
+        $keuangan = [
+            'income' => $paket['harga'],
+            'sumber' => $pasien['nama'],
+            'ket' => 'Sunat ' . $paket['nama']
+        ];
+        $this->cKeuangan->addByConfirm($keuangan['income'], $keuangan['sumber'], $keuangan['ket']);
         $this->status->save($data);
         $this->cKunjungan->addKunjungan($id, "Sunat", date("Y-m-d"));
         $this->session->setFlashdata('success', 'Konfirmasi berhasil !');

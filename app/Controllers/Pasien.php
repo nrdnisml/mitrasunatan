@@ -13,9 +13,10 @@ class Pasien extends BaseController
 {
     private $validation = [
         'nama' => [
-            'rules' => 'required',
+            'rules' => 'required|alpha_space',
             'errors' => [
-                'required' => 'Field nama pasien wajib diisi'
+                'required' => 'Field nama pasien wajib diisi',
+                'alpha_space' => 'Field harus berupa huruf'
             ]
         ],
         's_nikah' => [
@@ -44,9 +45,10 @@ class Pasien extends BaseController
             ]
         ],
         'tmp-lahir' => [
-            'rules' => 'required',
+            'rules' => 'required|alpha_space',
             'errors' => [
-                'required' => 'Field tempat lahir wajib diisi'
+                'required' => 'Field tempat lahir wajib diisi',
+                'alpha_space' => 'Field harus berupa huruf'
             ]
         ],
         'tgl-lahir' => [
@@ -70,7 +72,8 @@ class Pasien extends BaseController
         'alamat' => [
             'rules' => 'required',
             'errors' => [
-                'required' => 'Field alamat wajib diisi'
+                'required' => 'Field alamat wajib diisi',
+
             ]
         ],
         'rt' => [
@@ -87,28 +90,31 @@ class Pasien extends BaseController
                 'numeric' => 'Field harus berupa angka'
             ]
         ],
-        'kodepos' => [
-            'rules' => 'numeric',
-            'errors' => [
-                'numeric' => 'Kodepos harus berupa nomor'
-            ]
-        ],
+        // 'kodepos' => [
+        //     'rules' => 'numeric',
+        //     'errors' => [
+        //         'numeric' => 'Kodepos harus berupa nomor'
+        //     ]
+        // ],
         'kelurahan' => [
-            'rules' => 'required',
+            'rules' => 'required|alpha_space',
             'errors' => [
-                'required' => 'Field kelurahan wajib diisi'
+                'required' => 'Field kelurahan wajib diisi',
+                'alpha_space' => 'Field harus berupa huruf'
             ]
         ],
         'kecamatan' => [
-            'rules' => 'required',
+            'rules' => 'required|alpha_space',
             'errors' => [
-                'required' => 'Field kecamatan wajib diisi'
+                'required' => 'Field kecamatan wajib diisi',
+                'alpha_space' => 'Field harus berupa huruf'
             ]
         ],
         'kota' => [
-            'rules' => 'required',
+            'rules' => 'required|alpha_space',
             'errors' => [
-                'required' => 'Field kota wajib diisi'
+                'required' => 'Field kota wajib diisi',
+                'alpha_space' => 'Field harus berupa huruf'
             ]
         ],
         'paket' => [

@@ -19,6 +19,19 @@ function hitung_umur($tanggal_lahir, $tgl_daftar)
     return $y . " tahun " . $m . " bulan " . $d . " hari";
 }
 
+function hitung_umur_tahun($tanggal_lahir, $tgl_daftar)
+{
+    $birthDate = new DateTime($tanggal_lahir);
+    $today = new DateTime($tgl_daftar);
+    if ($birthDate > $today) {
+        exit("0 tahun 0 bulan 0 hari");
+    }
+    $y = $today->diff($birthDate)->y;
+    $m = $today->diff($birthDate)->m;
+    $d = $today->diff($birthDate)->d;
+    return $y;
+}
+
 if (!function_exists('tgl_indo')) {
     function date_indo($tgl)
     {

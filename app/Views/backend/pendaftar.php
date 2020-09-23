@@ -112,6 +112,9 @@
                                 <b>Tgl booking</b> <a class="float-right tgl-booking">haha</a>
                             </li>
                             <li class="list-group-item">
+                                <b>Tgl registrasi</b> <a class="float-right tgl-daftar">haha</a>
+                            </li>
+                            <li class="list-group-item">
                                 <b>Agama</b> <a class="float-right agama">haha</a>
                             </li>
                             <li class="list-group-item">
@@ -202,6 +205,7 @@
                 }
                 $('.nama').html(data.nama);
                 $('.tgl-booking').html(data.tgl_booking);
+                $('.tgl-daftar').html(data.tgl_daftar);
                 $('.alamat').html(data.alamat);
                 $('.agama').html(data.agama);
                 $('.layanan').html(data.layanan);

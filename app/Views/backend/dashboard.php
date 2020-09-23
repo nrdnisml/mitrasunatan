@@ -140,6 +140,9 @@
                                 <b>Tgl booking</b> <a class="float-right tgl-booking">haha</a>
                             </li>
                             <li class="list-group-item">
+                                <b>Tgl registrasi</b> <a class="float-right tgl-daftar">haha</a>
+                            </li>
+                            <li class="list-group-item">
                                 <b>Agama</b> <a class="float-right agama">haha</a>
                             </li>
                             <li class="list-group-item">
@@ -205,6 +208,7 @@
                 }
                 $('.nama').html(data.nama);
                 $('.tgl-booking').html(data.tgl_booking);
+                $('.tgl-daftar').html(data.tgl_daftar);
                 $('.alamat').html(data.alamat);
                 $('.agama').html(data.agama);
                 $('.layanan').html(data.layanan);
@@ -217,6 +221,75 @@
                 $('.email').attr("href", "mailto:" + data.email);
             }
         });
+    });
+</script>
+<!-- CHART -->
+<script src="<?= base_url('assets') ?>/js/highcharts/highcharts.js"></script>
+<script src="<?= base_url('assets') ?>/js/highcharts/themes/hc.light.js"></script>
+<script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'areaspline'
+        },
+        title: {
+            text: 'Grafik Income Klinik'
+        },
+        subtitle: {
+            text: 'Income'
+        },
+        xAxis: {
+            categories: [
+                <?php
+                foreach ($keuangan as $k) {
+                    # code...
+                    echo "'" . date_indo(substr($k['created_at'], 0, 10)) . "'," . " ";
+                }
+                ?>
+            ]
+        },
+        yAxis: {
+            title: {
+                text: 'Nominal'
+            },
+            labels: {
+                formatter: function() {
+                    var bytes = this.value;
+                    var sizes = ['ribu', 'juta', 'miliar', 'triliun'];
+                    if (bytes == 0) return '0';
+                    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1000)));
+                    return parseFloat((bytes / Math.pow(1000, i)).toFixed(1)) + ' ' + sizes[i - 1];
+                },
+            },
+        },
+        tooltip: {
+            shared: true,
+            valueSuffix: ' '
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: true
+            },
+            series: {
+                label: {
+                    connectorAllowed: true
+                },
+                pointStart: 0
+            }
+        },
+        series: [{
+            name: 'Income',
+            data: [
+                <?php
+                foreach ($keuangan as $income) {
+                    # code...
+                    echo $income['income'] . "," . " ";
+                }
+                ?>
+            ]
+        }]
     });
 </script>
 <?= $this->endSection(); ?>

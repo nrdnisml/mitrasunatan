@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\StatusModel;
 use App\Controllers\Kunjungan;
+use App\Controllers\Keuangan;
 
 class Pendaftar extends BaseController
 {
@@ -11,6 +12,7 @@ class Pendaftar extends BaseController
     {
         $this->cKunjungan = new Kunjungan();
         $this->status = new StatusModel();
+        $this->cKeuangan = new Keuangan();
         $this->db = \Config\Database::connect();
         helper('global');
     }
@@ -79,8 +81,8 @@ class Pendaftar extends BaseController
         $tgl_booking = substr($data['tgl_booking'], 0, 10);
         $tgl_daftar = substr($data['created_at'], 0, 10);
         $tgl_lahir = substr($data['tgl_lahir'], 0, 10);
-        $tgl_booking_indo = mediumdate_indo($tgl_booking);
         $tgl_daftar_indo = mediumdate_indo($tgl_daftar);
+        $tgl_booking_indo = mediumdate_indo($tgl_booking);
 
         $json = [
             'tgl_booking' => $tgl_booking_indo,
@@ -100,14 +102,36 @@ class Pendaftar extends BaseController
         echo json_encode($json);
     }
 
+    public function hargaPaketSunat($id)
+    {
+        $data = $this->getData($id);
+        $id_paket = $this->db->query('SELECT `id_paket` FROM `pasien` WHERE `id` =' . $id)->getRowArray();
+        $tgl_daftar = substr($data['created_at'], 0, 10);
+        $tgl_lahir = substr($data['tgl_lahir'], 0, 10);
+        $umur = hitung_umur_tahun($tgl_lahir, $tgl_daftar);
+        if ($umur > 16) {
+            $paket = $this->db->query('SELECT `nama`, `harga_dewasa` as `harga` FROM `paket` WHERE `id` =' . $id_paket['id_paket'])->getRowArray();
+        } else {
+            $paket = $this->db->query('SELECT `nama`, `harga_anak` as `harga` FROM `paket` WHERE `id` =' . $id_paket['id_paket'])->getRowArray();
+        }
+        return $paket;
+    }
+
     public function confirmProcess($id)
     {
         $pasien = $this->db->table('pasien')->getWhere(['id' => $id])->getRowArray();
+        $paket = $this->hargaPaketSunat($id);
         $data = [
             'id' => $pasien['id_status'],
             'is_confirm' => 1,
             'no_rm' => $this->setRm($id)
         ];
+        $keuangan = [
+            'income' => $paket['harga'],
+            'sumber' => $pasien['nama'],
+            'ket' => 'Sunat ' . $paket['nama']
+        ];
+        $this->cKeuangan->addByConfirm($keuangan['income'], $keuangan['sumber'], $keuangan['ket']);
         $this->status->save($data);
         $this->cKunjungan->addKunjungan($id, "Sunat", date("Y-m-d"));
     }

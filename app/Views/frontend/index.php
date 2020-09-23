@@ -94,6 +94,7 @@
         </div>
 
         <form method="POST" action="<?= base_url('/daftar'); ?>">
+          <?= csrf_field(); ?>
           <div class="bs-stepper-content">
 
             <!-- STEP 1 DATA PASIEN -->
@@ -155,7 +156,7 @@
 
                 <div class="form-group">
                   <div class="row">
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-6">
                       <label for="tmp-lahir">Tempat Lahir</label>
                       <input type="text" class="form-control form-control-user <?= isset($validation) && $validation->showError('tmp-lahir') ? 'is-invalid' : ''; ?>" name="tmp-lahir" id="tmp-lahir" autocomplete="off" value="<?= set_value('tmp-lahir'); ?>">
                       <div class=" invalid-feedback">
@@ -163,7 +164,7 @@
                       </div>
                     </div>
 
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-6">
                       <label for="tgl-lahir">Tgl. Lahir</label>
                       <input type="date" class="form-control form-control-user <?= isset($validation) && $validation->showError('tgl-lahir') ? 'is-invalid' : ''; ?>" name="tgl-lahir" id="tgl-lahir" value="<?= set_value('tgl-lahir'); ?>">
                       <div class=" invalid-feedback">
@@ -174,7 +175,7 @@
                 </div>
 
                 <div class="form-group row">
-                  <div class="col-sm-12 col-md-6">
+                  <div class="col-md-6 col-sm-12 mb-sm-3">
                     <label>Penanggung Jawab Pasien</label>
                     <select class="select2bs4 form-control <?= isset($validation) && $validation->showError('hubungan') ? 'is-invalid' : ''; ?>" data-placeholder="Pilih Pen. Jawab" name="hubungan" id="hubungan" style="width: 100%;">
                       <option value=""></option>
@@ -187,7 +188,7 @@
                       <?= isset($validation) ? $validation->showError('hubungan') : ''; ?>
                     </div>
                   </div>
-                  <div class="col-sm-12 col-md-6">
+                  <div class="col-md-6 col-sm-12">
                     <label>Pendidikan Terakhir</label>
                     <select class="select2bs4 form-control <?= isset($validation) && $validation->showError('pendidikan') ? 'is-invalid' : ''; ?>" data-placeholder="Pilih Pendidikan" name="pendidikan" id="pendidikan" style="width: 100%;">
                       <option value=""></option>
@@ -235,7 +236,7 @@
                     </select>
                   </div>
 
-                  <div class="col-sm-12 col-md-4">
+                  <div class="col-sm-12 col-md-4 mb-3 mb-sm-0">
                     <label for="kecamatan">Kecamatan</label>
                     <input type="text" class="form-control form-control-user <?= isset($validation) && $validation->showError('kecamatan') ? 'is-invalid' : ''; ?>" id="kecamatan" name="kecamatan" value="<?= set_value('kecamatan') ?>">
                     <div class=" invalid-feedback">
@@ -253,14 +254,14 @@
                 </div>
 
                 <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
+                  <div class="col-6 mb-3 mb-sm-0">
                     <label for="rt">RT</label>
                     <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('rt') ? 'is-invalid' : ''; ?>" id="rt" name="rt" value="<?= set_value('rt') ?>">
                     <div class=" invalid-feedback">
                       <?= isset($validation) ? $validation->showError('rt') : ''; ?>
                     </div>
                   </div>
-                  <div class="col-sm-6 mb-3 mb-sm-0">
+                  <div class="col-6 mb-3 mb-sm-0">
                     <label for="rw">RW</label>
                     <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('rw') ? 'is-invalid' : ''; ?>" id="rw" name="rw" value="<?= set_value('rw') ?>">
                     <div class=" invalid-feedback">
@@ -268,7 +269,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group mt-n3">
                   <label for="alamat">Alamat</label>
                   <input type="text" class="form-control form-control-user <?= isset($validation) && $validation->showError('alamat') ? 'is-invalid' : ''; ?>" id="alamat" name="alamat" placeholder="JL. lorem, No. 01" value="<?= set_value('alamat') ?>">
                   <div class="small d-inline">Isi dengan nomor rumah, blok, nama jalan, dsb.</div>
@@ -276,7 +277,6 @@
                     <?= isset($validation) ? $validation->showError('alamat') : ''; ?>
                   </div>
                 </div>
-
 
                 <p class="h5">Kontak yang bisa dihubungi</p>
                 <div class="line my-3"></div>
@@ -344,7 +344,7 @@
                       </select>
                     </div>
 
-                    <div class="col-sm-12 col-md-4">
+                    <div class="col-sm-12 col-md-4 mb-3 mb-sm-0">
                       <label for="kecamatan-pj">Kecamatan</label>
                       <input type="text" class="form-control form-control-user <?= isset($validation) && $validation->showError('kecamatan-pj') ? 'is-invalid' : ''; ?>" id="kecamatan-pj" name="kecamatan-pj" value="<?= set_value('kecamatan-pj') ?>">
                       <div class=" invalid-feedback">
@@ -362,14 +362,14 @@
                   </div>
 
                   <div class="form-group row">
-                    <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="col-6 mb-3 mb-sm-0">
                       <label for="rt-pj">RT</label>
                       <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('rt-pj') ? 'is-invalid' : ''; ?>" id="rt-pj" name="rt-pj" value="<?= set_value('rt-pj') ?>">
                       <div class=" invalid-feedback">
                         <?= isset($validation) ? $validation->showError('rt-pj') : ''; ?>
                       </div>
                     </div>
-                    <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="col-6 mb-3">
                       <label for="rw-pj">RW</label>
                       <input type="text" class="form-control form-control-user  <?= isset($validation) && $validation->showError('rw-pj') ? 'is-invalid' : ''; ?>" id="rw-pj" name="rw-pj" value="<?= set_value('rw-pj') ?>">
                       <div class=" invalid-feedback">
@@ -377,7 +377,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group mt-n3">
                     <label for="alamat-pj">Alamat</label>
                     <input type="text" class="form-control form-control-user <?= isset($validation) && $validation->showError('alamat-pj') ? 'is-invalid' : ''; ?>" id="-pjalamat" name="-pjalamat" placeholder="JL. lorem, No. 01" value="<?= set_value('alamat-pj') ?>">
                     <div class="small d-inline">Isi dengan nomor rumah, blok, nama jalan, dsb.</div>
@@ -423,7 +423,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-sm-12 col-md-6">
+                  <div class="col-sm-12 col-md-6 mb-sm-3">
                     <div class="card mt-2">
                       <div class="card-header bg-primary text-white">
                         <h5 class="d-inline mr-2">

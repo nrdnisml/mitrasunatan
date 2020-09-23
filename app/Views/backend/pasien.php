@@ -154,7 +154,7 @@ helper('global'); ?>
                                         <b>Tgl Sunat</b> <a class="float-right tgl-sunat">haha</a>
                                     </li>
                                     <li class="list-group-item">
-                                        <b>Tgl Daftar</b> <a class="float-right tgl-daftar">haha</a>
+                                        <b>Tgl Registrasi</b> <a class="float-right tgl-daftar">haha</a>
                                     </li>
                                 </ul>
                             </div>
