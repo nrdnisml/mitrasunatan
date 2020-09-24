@@ -20,8 +20,8 @@ helper('global'); ?>
             </a>
         </div>
         <div class="text-right">
-            <a href="/pengajar/print" class="btn btn-outline-danger"><i class="fas fa-print"></i> Print Data</a>
-            <a href="/pasien/excel" class="btn btn-outline-success"><i class="fas fa-file-excel"></i> Export Excel</a>
+            <a href="/pasien/export" target="blank" class="btn btn-outline-danger"><i class="fas fa-print"></i> Print Data</a>
+            <a href="/pasien/export/1" class="btn btn-outline-success"><i class="fas fa-file-excel"></i> Export Excel</a>
         </div>
     </div>
     <!-- /.card-header -->

@@ -48,8 +48,8 @@
             </a>
         </div>
         <div class="text-right">
-            <a href="/pengajar/print" class="btn btn-outline-danger"><i class="fas fa-print"></i> Print Data</a>
-            <a href="/kunjungan/excel" class="btn btn-outline-success"><i class="fas fa-file-excel"></i> Export Excel</a>
+            <a href="/kunjungan/export" target="blank" class="btn btn-outline-danger"><i class="fas fa-print"></i> Print Data</a>
+            <a href="/kunjungan/export/1" class="btn btn-outline-success"><i class="fas fa-file-excel"></i> Export Excel</a>
         </div>
     </div>
     <div class="card-body box-profile">
@@ -106,7 +106,13 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="rm">Nomor Rekam Medis</label>
-                        <input type="text" name="no_rm" id="rm" class="form-control tgl-rm">
+                        <!-- <input type="text" name="no_rm" id="rm" class="form-control tgl-rm"> -->
+                        <select class="select2bs4 form-control tgl-rm" data-placeholder="Masukkan No. RM" name="no_rm" id="rm" style="width: 100%;">
+                            <option value=""></option>
+                            <?php foreach ($rm as $rm) : ?>
+                                <option value="<?= $rm['no_rm']; ?>"><?= $rm['no_rm']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -120,4 +126,14 @@
 
 <!-- MODAL ADD PASIEN BARU -->
 
+<?= $this->endSection(); ?>
+
+<?= $this->section('ajax'); ?>
+<script>
+    //Initialize Select2 Elements
+    $('.select2').select2();
+    $('.select2bs4').select2({
+        theme: 'bootstrap4'
+    });
+</script>
 <?= $this->endSection(); ?>

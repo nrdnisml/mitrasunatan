@@ -33,16 +33,18 @@ class Kunjungan extends BaseController
                 ->join('status', 'pasien.id_status = status.id')
                 ->get()->getResultArray();
         }
+        $no_rm = $this->db->query('SELECT `no_rm` FROM `status` WHERE `no_rm` != 0')->getResultArray();
 
         $data = [
             'title' => 'Kunjungan Pasien',
             'path' => 'Kunjungan',
-            'kunjungan' => $kunjungan
+            'kunjungan' => $kunjungan,
+            'rm' => $no_rm
         ];
         echo view('backend/kunjungan', $data);
     }
 
-    public function excel()
+    public function export($type = null)
     {
         $kunjungan = $this->db->table('kunjungan')->select('*,kunjungan.id as id_kunjungan')
             ->join('pasien', 'pasien.id = kunjungan.id_pasien')
@@ -51,7 +53,11 @@ class Kunjungan extends BaseController
         $data = [
             'data' => $kunjungan
         ];
-        echo view('backend/excel/kunjungan', $data);
+        if ($type == 1) {
+            echo view('backend/excel/kunjungan', $data);
+        } else {
+            echo view('backend/print/kunjungan', $data);
+        }
     }
 
     public function addKunjungan($id, $kunjungan, $tgl)

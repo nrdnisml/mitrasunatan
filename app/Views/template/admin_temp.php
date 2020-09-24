@@ -26,6 +26,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title><?= $title; ?></title>
+    <!-- Select2 -->
+    <link rel="stylesheet" href="<?= base_url('assets') ?>/vendor/select2/css/select2.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets') ?>/vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css">
     <!-- stepper -->
     <link rel="stylesheet" href="<?= base_url('assets') ?>/css/bs-stepper.min.css">
     <!-- Google Font: Source Sans Pro -->

@@ -38,12 +38,12 @@ header("content-disposition:attachment; filename = data-pasien-" . "$mydate[mday
     <table class="table1">
         <thead>
             <tr class="label">
-                <td colspan="7" style="text-align: center;">
+                <td colspan="16" style="text-align: center;">
                     <p><b> Data Pasien</b></p>
                 </td>
             </tr>
             <tr class="label">
-                <td colspan="7" style="text-align: center;">
+                <td colspan="16" style="text-align: center;">
                     <p>Klinik Mitra Sunatan</p>
                 </td>
             </tr>
@@ -51,30 +51,37 @@ header("content-disposition:attachment; filename = data-pasien-" . "$mydate[mday
                 <th>Nama</th>
                 <th>No. RM</th>
                 <th>Usia</th>
+                <th>Agama</th>
                 <th>Gol. Darah</th>
+                <th>Pendidikan</th>
+                <th>Tmp/Tgl Lahir</th>
                 <th>Alamat</th>
+                <th>Tanggal Registrasi</th>
                 <th>Tanggal Sunat</th>
+                <th>Layanan</th>
+                <th>Paket</th>
                 <th>Jumlah Kontrol</th>
+                <th>Pen. Jawab</th>
+                <th>Status Pen. Jawab</th>
+                <th>Alamat Pen. Jawab</th>
             </tr>
         </thead>
         <tbody>
             <?php $i = 1; ?>
             <?php foreach ($data as $p) : ?>
-                <?php
-                $tgl_daftar = substr($p['tgl_booking'], 0, 10);
-                $tgl_lahir = substr($p['tgl_lahir'], 0, 10);
-                $usia = hitung_umur($tgl_lahir, $tgl_daftar);
-                ?>
-
                 <tr style="text-align: center;">
-                    <td>
-                        <?= $p['nama']; ?>
-                    </td>
+                    <td><?= $p['nama']; ?></td>
                     <td><?= $p['no_rm']; ?></td>
-                    <td><?= $usia; ?></td>
+                    <td><?= $p['umur']; ?></td>
+                    <td><?= $p['agama']; ?></td>
                     <td><?= $p['gol_dar']; ?></td>
+                    <td><?= $p['pendidikan']; ?></td>
+                    <td><?= $p['tmp_lahir']; ?> / <?= $p['tgl_lahir']; ?></td>
                     <td><?= $p['alamat']; ?></td>
-                    <td><?= mediumdate_indo($tgl_daftar); ?></td>
+                    <td><?= $p['tgl_daftar']; ?></td>
+                    <td><?= $p['tgl_sunat']; ?></td>
+                    <td><?= $p['layanan']; ?></td>
+                    <td><?= $p['paket']; ?></td>
                     <td>
                         <?php $n_kontrol = $this->db->table('kunjungan')
                             ->join('pasien', 'pasien.id = kunjungan.id_pasien')
@@ -83,6 +90,9 @@ header("content-disposition:attachment; filename = data-pasien-" . "$mydate[mday
                         echo $n_kontrol;
                         ?>
                     </td>
+                    <td><?= $p['nama_pj']; ?></td>
+                    <td><?= $p['hubungan']; ?></td>
+                    <td><?= $p['alamat_pj']; ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

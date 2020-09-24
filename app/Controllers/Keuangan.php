@@ -30,13 +30,16 @@ class Keuangan extends BaseController
         echo view('/backend/keuangan', $data);
     }
 
-    public function excel()
+    public function export($type = null)
     {
         $data = [
             'data' => $this->model->findAll()
         ];
-
-        echo view('/backend/excel/keuangan', $data);
+        if ($type == 1) {
+            echo view('/backend/excel/keuangan', $data);
+        } else {
+            echo view('/backend/print/keuangan', $data);
+        }
     }
 
     public function add()

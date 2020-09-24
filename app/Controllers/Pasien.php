@@ -201,7 +201,7 @@ class Pasien extends BaseController
         echo view('backend/pasien', $data);
     }
 
-    public function excel()
+    public function export($type = null)
     {
         $query = $this->db->query('SELECT 
             `pasien`.*,`pasien`.`id` as `id_pasien`, 
@@ -216,39 +216,123 @@ class Pasien extends BaseController
             LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
             WHERE `status`.`is_confirm` = 1')->getResultArray();
 
-        $data = [
-            'data' => $query
-        ];
-        echo view('/backend/excel/pasien', $data);
+        if ($type == 1) {
+            $data = [
+                'data' => $this->dataExcel()
+            ];
+            echo view('/backend/excel/pasien', $data);
+        } else {
+            $data = [
+                'data' => $query
+            ];
+            echo  view('/backend/print/pasien', $data);
+        }
     }
 
     ####################################### GET DATA PASIEN #######################################
 
-    public function getData($id)
+    public function getData($id = null)
     {
-        $query = $this->db->query('SELECT 
-        `pasien`.*,`pasien`.`id` as `id_pasien`, 
-        `status`.*, 
-        `paket`.`nama` as `paket`,
-        `alamat`.*,`penanggung_jawab`.`nama` as `pj`,
-        `penanggung_jawab`.`id_domisili` as `id_domisili_pj`,
-        `penanggung_jawab`.`status` as `hubungan`,`penanggung_jawab`.`nama` as `nama_pj`
-        FROM `pasien` 
-        JOIN `status` on `pasien`.`id_status` = `status`.`id`
-        JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
-        JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
-        LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
-        WHERE `status`.`is_confirm` = 1 AND	`pasien`.`id` = ' . $id)->getRowArray();
+        if ($id) {
+            $query = $this->db->query('SELECT 
+            `pasien`.*,`pasien`.`id` as `id_pasien`, 
+            `status`.*, 
+            `paket`.`nama` as `paket`,
+            `alamat`.*,`penanggung_jawab`.`nama` as `pj`,
+            `penanggung_jawab`.`id_domisili` as `id_domisili_pj`,
+            `penanggung_jawab`.`status` as `hubungan`,`penanggung_jawab`.`nama` as `nama_pj`
+            FROM `pasien` 
+            JOIN `status` on `pasien`.`id_status` = `status`.`id`
+            JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
+            JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
+            LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
+            WHERE `status`.`is_confirm` = 1 AND	`pasien`.`id` = ' . $id)->getRowArray();
+        } else {
+            $query = $this->db->query('SELECT 
+            `pasien`.*,`pasien`.`id` as `id_pasien`, 
+            `status`.*, 
+            `paket`.`nama` as `paket`,
+            `alamat`.*,`penanggung_jawab`.`nama` as `pj`,
+            `penanggung_jawab`.`id_domisili` as `id_domisili_pj`,
+            `penanggung_jawab`.`status` as `hubungan`,`penanggung_jawab`.`nama` as `nama_pj`
+            FROM `pasien` 
+            JOIN `status` on `pasien`.`id_status` = `status`.`id`
+            JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
+            JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
+            LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
+            WHERE `status`.`is_confirm` = 1')->getResultArray();
+        }
+
         return $query;
     }
 
-    public function getAlamatPJ($id)
+    public function getAlamatPJ($id, $type = null)
     {
-        $alamat = $this->db->query('SELECT `alamat`.`alamat` as `alamat_pj`,
+        if ($type) {
+            $alamat = $this->db->query('SELECT `alamat`.`alamat` as `alamat_pj`,
+        `alamat`.`rt` as `rt_pj`,`alamat`.`rw` as `rw_pj`,`alamat`.`kelurahan` as `kelurahan_pj`,
+        `alamat`.`kecamatan` as `kecamatan_pj`, `alamat`.`kota_kab` as `kota_pj`, `alamat`.`kodepos` as `kodepos_pj`
+        FROM `alamat` WHERE `alamat`.`id` = ' . $id)->getResultArray();
+        } else {
+            $alamat = $this->db->query('SELECT `alamat`.`alamat` as `alamat_pj`,
         `alamat`.`rt` as `rt_pj`,`alamat`.`rw` as `rw_pj`,`alamat`.`kelurahan` as `kelurahan_pj`,
         `alamat`.`kecamatan` as `kecamatan_pj`, `alamat`.`kota_kab` as `kota_pj`, `alamat`.`kodepos` as `kodepos_pj`
         FROM `alamat` WHERE `alamat`.`id` = ' . $id)->getRowArray();
+        }
         return $alamat;
+    }
+
+    public function dataExcel()
+    {
+        $data = $this->getData();
+        $i = 0;
+        foreach ($data as $data) {
+            $tgl_booking = substr($data['tgl_booking'], 0, 10);
+            $tgl_daftar = substr($data['created_at'], 0, 10);
+            $tgl_lahir = substr($data['tgl_lahir'], 0, 10);
+            $tgl_booking_indo = mediumdate_indo($tgl_booking);
+            $tgl_daftar_indo = mediumdate_indo($tgl_daftar);
+            $tgl_lahir_indo = mediumdate_indo($tgl_lahir);
+
+            $pasien[$i] = [
+                'id_pasien' => $data['id_pasien'],
+                'nama' => $data['nama'],
+                'umur' => hitung_umur($tgl_lahir, $tgl_daftar),
+                'status_nikah' => $data['s_nikah'],
+                'no_rm' => $data['no_rm'],
+                'tmp_lahir' => $data['tmp_lahir'],
+                'tgl_lahir' => $tgl_lahir_indo,
+                'pendidikan' => $data['pendidikan'],
+                'gol_dar' => $data['gol_dar'],
+                'booking' => $tgl_booking,
+                'agama' => $data['agama'],
+                'alamat' => $data['alamat'] . " RT " . $data['rt'] . " RW " . $data['rw'] . " Kel. " . $data['kelurahan'] . " Kec. " . $data['kecamatan'] . " " . $data['kota_kab'] . " (" . $data['kodepos'] . ")",
+                'tgl_daftar' => $tgl_daftar_indo,
+                'tgl_sunat' => $tgl_booking_indo,
+                'layanan' => "Sunat di " . $data['layanan'],
+                'paket' => $data['paket'],
+                'wa' => $data['no_tlp'],
+                'email' => $data['email']
+            ];
+
+            if ($data['id_pj']) {
+                $alamatPj[$i] = $this->getAlamatPJ($data['id_domisili_pj'], 1)[0];
+                $pj[$i] = [
+                    'alamat_pj' => $alamatPj[$i]['alamat_pj'] . " RT " . $alamatPj[$i]['rt_pj'] . " RW " . $alamatPj[$i]['rw_pj'] . " KEL. " . $alamatPj[$i]['kelurahan_pj'] . " KEC. " . $alamatPj[$i]['kecamatan_pj'] . " " . $alamatPj[$i]['kota_pj'] . " (" . $alamatPj[$i]['kodepos_pj'] . ")",
+                    'nama_pj' => $data['nama_pj'],
+                    'hubungan' => $data['hubungan']
+                ];
+            } else {
+                $pj[$i] = [
+                    'alamat_pj' => "-",
+                    'nama_pj' => "-",
+                    'hubungan' => "-"
+                ];
+            }
+            $i++;
+        }
+        $data = array_replace_recursive($pj, $pasien);
+        return $data;
     }
 
     public function jsonData($id)
@@ -286,7 +370,7 @@ class Pasien extends BaseController
         } else {
             $alamatPj = $this->getAlamatPJ($data['id_domisili_pj']);
             $pj = [
-                'alamat_pj' => $alamatPj['alamat_pj'] . " RT " . $alamatPj['rt_pj'] . " RW " . $alamatPj['rw_pj'] . " KEL. " . $alamatPj['kelurahan_pj'] . " KEC. " . $alamatPj['kecamatan_pj'] . " " . $alamatPj['kota_pj'] . " (" . $alamatPj['kodepos'] . ")",
+                'alamat_pj' => $alamatPj['alamat_pj'] . " RT " . $alamatPj['rt_pj'] . " RW " . $alamatPj['rw_pj'] . " KEL. " . $alamatPj['kelurahan_pj'] . " KEC. " . $alamatPj['kecamatan_pj'] . " " . $alamatPj['kota_pj'] . " (" . $alamatPj['kodepos_pj'] . ")",
                 'nama_pj' => $data['nama_pj'],
                 'hubungan' => $data['hubungan']
             ];
@@ -477,13 +561,12 @@ class Pasien extends BaseController
 
     public function delete($id)
     {
-        $data = $this->pasien->find($id);
+        $data = $this->model->find($id);
         $id_pj = $data['id_pj'];
         $id_status = $data['id_status'];
         $id_domisili = $data['id_domisili'];
 
-        $this->pasien->delete($id);
-        $this->pasien->delete($id);
+        $this->model->delete($id);
         $this->db->table('penanggung_jawab')->where('id', $id_pj)->delete();
         $this->db->table('status')->where('id', $id_status)->delete();
         $this->db->table('alamat')->where('id', $id_domisili)->delete();
