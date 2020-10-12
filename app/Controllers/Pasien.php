@@ -97,17 +97,15 @@ class Pasien extends BaseController
         //     ]
         // ],
         'kelurahan' => [
-            'rules' => 'required|alpha_space',
+            'rules' => 'required',
             'errors' => [
-                'required' => 'Field kelurahan wajib diisi',
-                'alpha_space' => 'Field harus berupa huruf'
+                'required' => 'Field kelurahan wajib diisi'
             ]
         ],
         'kecamatan' => [
-            'rules' => 'required|alpha_space',
+            'rules' => 'required',
             'errors' => [
-                'required' => 'Field kecamatan wajib diisi',
-                'alpha_space' => 'Field harus berupa huruf'
+                'required' => 'Field kecamatan wajib diisi'
             ]
         ],
         'kota' => [
@@ -150,47 +148,18 @@ class Pasien extends BaseController
         helper('global');
     }
 
-    public function index($day = null)
+    public function index($type = null)
     {
-        if ($day == 1) {
-            $query = $this->db->query('SELECT 
-            `pasien`.*,`pasien`.`id` as `id_pasien`, 
-            `status`.*, 
-            `paket`.`nama` as `paket`,
-            `alamat`.*,`penanggung_jawab`.`nama` as `pj`,
-            `penanggung_jawab`.`status` as `hubungan`,`penanggung_jawab`.`nama` as `nama_pj`
-            FROM `pasien` 
-            JOIN `status` on `pasien`.`id_status` = `status`.`id`
-            JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
-            JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
-            LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
-            WHERE `status`.`is_confirm` = 1 AND DATE(`tgl_booking`) = CURDATE()')->getResultArray();
-        } elseif ($day == 7) {
-            $query = $this->db->query('SELECT 
-            `pasien`.*,`pasien`.`id` as `id_pasien`, 
-            `status`.*, 
-            `paket`.`nama` as `paket`,
-            `alamat`.*,`penanggung_jawab`.`nama` as `pj`,
-            `penanggung_jawab`.`status` as `hubungan`,`penanggung_jawab`.`nama` as `nama_pj`
-            FROM `pasien` 
-            JOIN `status` on `pasien`.`id_status` = `status`.`id`
-            JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
-            JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
-            LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
-            WHERE `status`.`is_confirm` = 1 AND YEARWEEK(`tgl_booking`) = YEARWEEK(NOW())')->getResultArray();
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
+
+        if ($type) {
+            $tglStart = $this->request->getVar('tgl-start');
+            $tglEnd = $this->request->getVar('tgl-end');
+            $query = $this->getDataFilter($tglStart, $tglEnd);
         } else {
-            $query = $this->db->query('SELECT 
-            `pasien`.*,`pasien`.`id` as `id_pasien`, 
-            `status`.*, 
-            `paket`.`nama` as `paket`,
-            `alamat`.*,`penanggung_jawab`.`nama` as `pj`,
-            `penanggung_jawab`.`status` as `hubungan`,`penanggung_jawab`.`nama` as `nama_pj`
-            FROM `pasien` 
-            JOIN `status` on `pasien`.`id_status` = `status`.`id`
-            JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
-            JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
-            LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
-            WHERE `status`.`is_confirm` = 1')->getResultArray();
+            $query = $this->getData();
         }
         $data = [
             'title' => 'Data Pasien',
@@ -201,8 +170,20 @@ class Pasien extends BaseController
         echo view('backend/pasien', $data);
     }
 
+    public function invoice($id)
+    {
+        $data = [
+            'pendaftar' => $this->getData($id),
+            'invoice' => $this->getDataInvoice($id)
+        ];
+        echo view('backend/print/invoice', $data);
+    }
+
     public function export($type = null)
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $query = $this->db->query('SELECT 
             `pasien`.*,`pasien`.`id` as `id_pasien`, 
             `status`.*, 
@@ -229,61 +210,11 @@ class Pasien extends BaseController
         }
     }
 
-    ####################################### GET DATA PASIEN #######################################
-
-    public function getData($id = null)
-    {
-        if ($id) {
-            $query = $this->db->query('SELECT 
-            `pasien`.*,`pasien`.`id` as `id_pasien`, 
-            `status`.*, 
-            `paket`.`nama` as `paket`,
-            `alamat`.*,`penanggung_jawab`.`nama` as `pj`,
-            `penanggung_jawab`.`id_domisili` as `id_domisili_pj`,
-            `penanggung_jawab`.`status` as `hubungan`,`penanggung_jawab`.`nama` as `nama_pj`
-            FROM `pasien` 
-            JOIN `status` on `pasien`.`id_status` = `status`.`id`
-            JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
-            JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
-            LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
-            WHERE `status`.`is_confirm` = 1 AND	`pasien`.`id` = ' . $id)->getRowArray();
-        } else {
-            $query = $this->db->query('SELECT 
-            `pasien`.*,`pasien`.`id` as `id_pasien`, 
-            `status`.*, 
-            `paket`.`nama` as `paket`,
-            `alamat`.*,`penanggung_jawab`.`nama` as `pj`,
-            `penanggung_jawab`.`id_domisili` as `id_domisili_pj`,
-            `penanggung_jawab`.`status` as `hubungan`,`penanggung_jawab`.`nama` as `nama_pj`
-            FROM `pasien` 
-            JOIN `status` on `pasien`.`id_status` = `status`.`id`
-            JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
-            JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
-            LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
-            WHERE `status`.`is_confirm` = 1')->getResultArray();
-        }
-
-        return $query;
-    }
-
-    public function getAlamatPJ($id, $type = null)
-    {
-        if ($type) {
-            $alamat = $this->db->query('SELECT `alamat`.`alamat` as `alamat_pj`,
-        `alamat`.`rt` as `rt_pj`,`alamat`.`rw` as `rw_pj`,`alamat`.`kelurahan` as `kelurahan_pj`,
-        `alamat`.`kecamatan` as `kecamatan_pj`, `alamat`.`kota_kab` as `kota_pj`, `alamat`.`kodepos` as `kodepos_pj`
-        FROM `alamat` WHERE `alamat`.`id` = ' . $id)->getResultArray();
-        } else {
-            $alamat = $this->db->query('SELECT `alamat`.`alamat` as `alamat_pj`,
-        `alamat`.`rt` as `rt_pj`,`alamat`.`rw` as `rw_pj`,`alamat`.`kelurahan` as `kelurahan_pj`,
-        `alamat`.`kecamatan` as `kecamatan_pj`, `alamat`.`kota_kab` as `kota_pj`, `alamat`.`kodepos` as `kodepos_pj`
-        FROM `alamat` WHERE `alamat`.`id` = ' . $id)->getRowArray();
-        }
-        return $alamat;
-    }
-
     public function dataExcel()
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $data = $this->getData();
         $i = 0;
         foreach ($data as $data) {
@@ -335,8 +266,96 @@ class Pasien extends BaseController
         return $data;
     }
 
+    ####################################### GET DATA PASIEN #######################################
+
+    public function getData($id = null)
+    {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
+        if ($id) {
+            $query = $this->db->query('SELECT 
+            `pasien`.*,`pasien`.`id` as `id_pasien`, 
+            `status`.*, 
+            `paket`.`nama` as `paket`,
+            `alamat`.*,`penanggung_jawab`.`nama` as `pj`,
+            `penanggung_jawab`.`id_domisili` as `id_domisili_pj`,
+            `penanggung_jawab`.`status` as `hubungan`,`penanggung_jawab`.`nama` as `nama_pj`
+            FROM `pasien` 
+            JOIN `status` on `pasien`.`id_status` = `status`.`id`
+            JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
+            JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
+            LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
+            WHERE `status`.`is_confirm` = 1 AND	`pasien`.`id` = ' . $id)->getRowArray();
+        } else {
+            $query = $this->db->query('SELECT 
+            `pasien`.*,`pasien`.`id` as `id_pasien`, 
+            `status`.*, 
+            `paket`.`nama` as `paket`,
+            `alamat`.*,`penanggung_jawab`.`nama` as `pj`,
+            `penanggung_jawab`.`id_domisili` as `id_domisili_pj`,
+            `penanggung_jawab`.`status` as `hubungan`,`penanggung_jawab`.`nama` as `nama_pj`
+            FROM `pasien` 
+            JOIN `status` on `pasien`.`id_status` = `status`.`id`
+            JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
+            JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
+            LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
+            WHERE `status`.`is_confirm` = 1')->getResultArray();
+        }
+        return $query;
+    }
+
+    private function getDataInvoice($id)
+    {
+        return $this->db->query('SELECT `pasien`.`nama`, `paket`.`nama` as `paket`, `income`.`income` FROM `transaksi`
+        JOIN `pasien` on `pasien`.`id` = `transaksi`.`id_pasien`
+        JOIN `paket` on `paket`.`id` = `transaksi`.`id_paket`
+        JOIN `income` ON `income`.`id` = `transaksi`.`id_income`
+        WHERE `pasien`.`id` = ' . $id)->getRowArray();
+    }
+
+    public function getDataFilter($tglStart, $tglEnd)
+    {
+        $query = $this->db->query('SELECT 
+            `pasien`.*,`pasien`.`id` as `id_pasien`, 
+            `status`.*, 
+            `paket`.`nama` as `paket`,
+            `alamat`.*,`penanggung_jawab`.`nama` as `pj`,
+            `penanggung_jawab`.`status` as `hubungan`,`penanggung_jawab`.`nama` as `nama_pj`
+            FROM `pasien` 
+            JOIN `status` on `pasien`.`id_status` = `status`.`id`
+            JOIN `paket` ON `paket`.`id` = `pasien`.`id_paket`
+            JOIN `alamat` ON `pasien`.`id_domisili` = `alamat`.`id`
+            LEFT JOIN `penanggung_jawab` ON `pasien`.`id_pj` = `penanggung_jawab`.`id`
+            WHERE `status`.`is_confirm` = 1 AND DATE(`tgl_booking`) BETWEEN "' . $tglStart . '" AND "' . $tglEnd . '"')
+            ->getResultArray();
+        return $query;
+    }
+
+    public function getAlamatPJ($id, $type = null)
+    {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
+        if ($type) {
+            $alamat = $this->db->query('SELECT `alamat`.`alamat` as `alamat_pj`,
+        `alamat`.`rt` as `rt_pj`,`alamat`.`rw` as `rw_pj`,`alamat`.`kelurahan` as `kelurahan_pj`,
+        `alamat`.`kecamatan` as `kecamatan_pj`, `alamat`.`kota_kab` as `kota_pj`, `alamat`.`kodepos` as `kodepos_pj`
+        FROM `alamat` WHERE `alamat`.`id` = ' . $id)->getResultArray();
+        } else {
+            $alamat = $this->db->query('SELECT `alamat`.`alamat` as `alamat_pj`,
+        `alamat`.`rt` as `rt_pj`,`alamat`.`rw` as `rw_pj`,`alamat`.`kelurahan` as `kelurahan_pj`,
+        `alamat`.`kecamatan` as `kecamatan_pj`, `alamat`.`kota_kab` as `kota_pj`, `alamat`.`kodepos` as `kodepos_pj`
+        FROM `alamat` WHERE `alamat`.`id` = ' . $id)->getRowArray();
+        }
+        return $alamat;
+    }
+
     public function jsonData($id)
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $data = $this->getData($id);
         $tgl_booking = substr($data['tgl_booking'], 0, 10);
         $tgl_daftar = substr($data['created_at'], 0, 10);
@@ -383,6 +402,9 @@ class Pasien extends BaseController
     ####################################### CRUD DATA BY ADMIN #######################################
     public function addByAdmin()
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $pj = $this->request->getVar('hubungan');
         if ($pj == "Mandiri") {
             if (!$this->validate($this->validation)) {
@@ -401,6 +423,9 @@ class Pasien extends BaseController
 
     private function addDataByAdmin()
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $this->cPendaftar = new Pendaftar();
         $this->addPasien();
         #ambil id dari pasien yang ditambahkan kemudian confirm
@@ -412,6 +437,9 @@ class Pasien extends BaseController
 
     private function validasiDataByAdmin()
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $data = [
             'title' => 'Tambah Pasien',
             'path' => 'Tambah Pasien',
@@ -424,43 +452,53 @@ class Pasien extends BaseController
     }
 
     ####################################### CRUD DATA PASIEN #######################################
-
-    public function add()
-    {
-        $pj = $this->request->getVar('hubungan');
-        if ($pj == "Mandiri") {
-            if (!$this->validate($this->validation)) {
-                $this->validasiData();
-            } else {
-                return $this->addAllTable();
-            }
-        } else {
-            if (!$this->validate(array_merge($this->validation, $this->val_pj))) {
-                $this->validasiData();
-            } else {
-                return $this->addAllTable();
-            }
-        }
-    }
-
-    private function validasiData()
+    private function validasiData($error = null)
     {
         $data = [
             'pasien' => $this->model->findAll(),
             'paket' => $this->paket->findAll(),
             'validation' => $this->validator
         ];
-        $this->session->setFlashdata('error', 'Registrasi pasien gagal ! <br> Periksa kembali form inputan');
+        if ($error == 'tgl-booking') {
+            $this->session->setFlashdata('error', 'Registrasi pasien gagal ! <br> Tanggal Booking Tidak Valid');
+        } elseif ($error == "tgl-lahir") {
+            $this->session->setFlashdata('error', 'Registrasi pasien gagal ! <br> Tanggal Lahir Tidak Valid');
+        } else {
+            $this->session->setFlashdata('error', 'Registrasi pasien gagal ! <br> Periksa kembali form inputan');
+        }
         echo view('frontend/index', $data);
     }
-
+    public function add()
+    {
+        $pj = $this->request->getVar('hubungan');
+        $tgl_lahir = date('Y-m-d', strtotime($this->request->getVar('tgl-lahir')));
+        $tgl_booking = date('Y-m-d', strtotime($this->request->getVar('tgl-booking')));
+        if ($tgl_lahir > date('Y-m-d')) {
+            $this->validasiData("tgl-lahir");
+        } elseif ($tgl_booking < date('Y-m-d')) {
+            $this->validasiData("tgl-booking");
+        } else {
+            if ($pj == "Mandiri") {
+                if (!$this->validate($this->validation)) {
+                    $this->validasiData();
+                } else {
+                    return $this->addAllTable();
+                }
+            } else {
+                if (!$this->validate(array_merge($this->validation, $this->val_pj))) {
+                    $this->validasiData();
+                } else {
+                    return $this->addAllTable();
+                }
+            }
+        }
+    }
     private function addAllTable()
     {
         $this->addPasien();
         $this->session->setFlashdata('success', 'Registrasi pasien berhasil !');
         return redirect()->to('/');
     }
-
     public function addPasien()
     {
         $alamat = [
@@ -504,7 +542,6 @@ class Pasien extends BaseController
             $this->pj->save($dataPj);
         }
     }
-
     public function addPj()
     {
         $pj = $this->request->getVar('hubungan');
@@ -537,14 +574,12 @@ class Pasien extends BaseController
             return $id[0];
         }
     }
-
     public function addAlamat($data = [])
     {
         $this->alamat->save($data);
         $id = $this->db->table('alamat')->selectMax('id')->get()->getResultArray();
         return $id[0];
     }
-
     public function addStatus()
     {
         $data = [
@@ -558,9 +593,11 @@ class Pasien extends BaseController
         $id = $this->db->table('status')->selectMax('id')->get()->getResultArray();
         return $id[0];
     }
-
     public function delete($id)
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $data = $this->model->find($id);
         $id_pj = $data['id_pj'];
         $id_status = $data['id_status'];

@@ -49,7 +49,6 @@ header("content-disposition:attachment; filename = data-income-" . "$mydate[mday
             </tr>
             <tr style="text-align: center;">
                 <th>Income</th>
-                <th>Total Income</th>
                 <th>Sumber</th>
                 <th>Keterangan</th>
                 <th>Tanggal</th>
@@ -60,7 +59,6 @@ header("content-disposition:attachment; filename = data-income-" . "$mydate[mday
                 <?php $tgl_daftar = substr($income['created_at'], 0, 10); ?>
                 <tr style="text-align: center;">
                     <td><?= rupiah($income['income']); ?></td>
-                    <td><?= rupiah($income['total']); ?></td>
                     <td><?= $income['sumber']; ?></td>
                     <td><?= $income['ket']; ?></td>
                     <td><?= longdate_indo($tgl_daftar); ?></td>

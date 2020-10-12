@@ -28,6 +28,9 @@ class Profile extends BaseController
 
     public function update()
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         // this lokal var
         $id = $this->session->get('id');
         $user = $this->model->where('id', $id)->find();

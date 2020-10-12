@@ -21,35 +21,27 @@
 
       <div class="row">
 
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-6">
           <div class="count-box">
-            <i class="icofont-doctor-alt"></i>
-            <span data-toggle="counter-up">85</span>
-            <p>Doctors</p>
+            <i class="icofont-package"></i>
+            <span data-toggle="counter-up"><?= $n_paket; ?></span>
+            <p>Paket</p>
           </div>
         </div>
 
-        <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+        <div class="col-lg-4 col-md-6 mt-5 mt-md-0">
           <div class="count-box">
-            <i class="icofont-patient-bed"></i>
-            <span data-toggle="counter-up">18</span>
-            <p>Departments</p>
+            <i class="icofont-patient-file"></i>
+            <span data-toggle="counter-up"><?= $n_kunjungan; ?></span>
+            <p>Kunjungan</p>
           </div>
         </div>
 
-        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+        <div class="col-lg-4 col-md-6 mt-5 mt-lg-0">
           <div class="count-box">
-            <i class="icofont-laboratory"></i>
-            <span data-toggle="counter-up">8</span>
-            <p>Research Labs</p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-          <div class="count-box">
-            <i class="icofont-award"></i>
-            <span data-toggle="counter-up">150</span>
-            <p>Awards</p>
+            <i class="icofont-users-social"></i>
+            <span data-toggle="counter-up"><?= $n_pasien; ?></span>
+            <p>Pasien</p>
           </div>
         </div>
 
@@ -339,8 +331,6 @@
                     <div class="col-sm-12 col-md-4 mb-3 mb-sm-0" id="select-kelurahan-pj">
                       <label>Kelurahan</label>
                       <select id="kelurahan-s-pj" class="custom-select">
-                        <option value="Sudah Menikah" <?= set_select('kelurahan', 'Sudah Menikah'); ?>>Sudah Menikah</option>
-                        <option value="Belum Menikah" <?= set_select('kelurahan', 'Belum Menikah'); ?>>Belum Menikah</option>
                       </select>
                     </div>
 
@@ -560,7 +550,11 @@
 <script>
   $("input[type=checkbox]").on("click", function() {
     $('.alamat-group').toggle();
+    $(".alamat-group").each(function() {
+      $(this).find('input').val("");
+    })
   });
+
   $('#hubungan').on('change', function() {
     if (this.value == "Mandiri") {
       $('.data-pj').hide();

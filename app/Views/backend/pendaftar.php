@@ -41,13 +41,10 @@
                             </td>
                             <td>
                                 <div class="row">
-                                    <div class="col-sm-12 col-md-4">
-                                        <a href="<?= base_url('/pendaftar/invoice'); ?>/<?= $p['id_pasien']; ?>" class="btn btn-sm btn-primary mt-1"><i class="fas fa-receipt"></i></a>
-                                    </div>
-                                    <div class="col-sm-12 col-md-4">
+                                    <div class="col-sm-12 col-md-6">
                                         <a href="<?= base_url('/pendaftar/editBooking'); ?>/<?= $p['id_pasien']; ?>" data-id="<?= $p['id_pasien'] ?>" data-toggle="modal" data-target="#bookingModal" class="btn btn-sm btn-warning mt-1 tombol-edit"> <i class="fas fa-edit"></i></a>
                                     </div>
-                                    <div class="col-sm-12 col-md-4">
+                                    <div class="col-sm-12 col-md-6">
                                         <a href="<?= base_url('/pendaftar/delete'); ?>/<?= $p['id_pasien']; ?>" class="tombol-hapus btn btn-sm btn-danger mt-1"><i class="fas fa-trash"></i></a>
                                     </div>
                                 </div>

@@ -40,7 +40,6 @@
             <tr>
                 <th>No</th>
                 <th>Income</th>
-                <th>Total Income</th>
                 <th>Sumber</th>
                 <th>Keterangan</th>
                 <th>Tanggal</th>
@@ -55,7 +54,6 @@
                 <tr>
                     <td><?= $i++; ?></td>
                     <td><?= rupiah($income['income']); ?></td>
-                    <td><?= rupiah($income['total']); ?></td>
                     <td><?= $income['sumber']; ?></td>
                     <td><?= $income['ket']; ?></td>
                     <td><?= longdate_indo($tgl_daftar); ?></td>

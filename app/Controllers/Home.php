@@ -18,7 +18,10 @@ class Home extends BaseController
 	{
 		$data = [
 			'pasien' => $this->pasien->findAll(),
-			'paket' => $this->paket->findAll()
+			'paket' => $this->paket->findAll(),
+			'n_paket' => $this->db->table('paket')->select('id')->countAllResults(),
+			'n_pasien' => $this->db->table('pasien')->select('id')->countAllResults(),
+			'n_kunjungan' => $this->db->table('kunjungan')->select('id')->countAllResults(),
 		];
 		return view('frontend/index', $data);
 	}

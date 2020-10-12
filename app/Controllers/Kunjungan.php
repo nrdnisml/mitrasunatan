@@ -15,24 +15,12 @@ class Kunjungan extends BaseController
         $this->paket = new PaketModel();
     }
 
-    public function index($day = null)
+    public function index($index = null)
     {
-        if ($day == 1) {
-            $kunjungan = $this->db->query('SELECT *,`kunjungan`.`id` as `id_kunjungan` from `kunjungan` 
-            JOIN `pasien` on `pasien`.`id` = `kunjungan`.`id_pasien`
-            JOIN `status`on `pasien`.`id_status` = `status`.`id`
-            WHERE DATE(`tgl_kunjungan`) = CURDATE()')->getResultArray();
-        } elseif ($day == 7) {
-            $kunjungan = $this->db->query('SELECT *,`kunjungan`.`id` as `id_kunjungan` from `kunjungan` 
-            JOIN `pasien` on `pasien`.`id` = `kunjungan`.`id_pasien`
-            JOIN `status`on `pasien`.`id_status` = `status`.`id`
-            WHERE YEARWEEK(`tgl_kunjungan`) = YEARWEEK(NOW())')->getResultArray();
-        } else {
-            $kunjungan = $this->db->table('kunjungan')->select('*,kunjungan.id as id_kunjungan')
-                ->join('pasien', 'pasien.id = kunjungan.id_pasien')
-                ->join('status', 'pasien.id_status = status.id')
-                ->get()->getResultArray();
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
         }
+        $kunjungan = $this->getDataKunjungan($index);
         $no_rm = $this->db->query('SELECT `no_rm` FROM `status` WHERE `no_rm` != 0')->getResultArray();
 
         $data = [
@@ -44,8 +32,28 @@ class Kunjungan extends BaseController
         echo view('backend/kunjungan', $data);
     }
 
+    private function getDataKunjungan($index = null)
+    {
+        if ($index == 1) {
+            $tglStart = $this->request->getVar('tgl-start');
+            $tglEnd = $this->request->getVar('tgl-end');
+            $kunjungan = $this->db->query('SELECT *,`kunjungan`.`id` as `id_kunjungan` from `kunjungan` 
+            JOIN `pasien` on `pasien`.`id` = `kunjungan`.`id_pasien`
+            JOIN `status`on `pasien`.`id_status` = `status`.`id` WHERE DATE(`kunjungan`.`tgl_kunjungan`) BETWEEN "' . $tglStart . '" AND "' . $tglEnd . '"')->getResultArray();
+        } else {
+            $kunjungan = $this->db->table('kunjungan')->select('*,kunjungan.id as id_kunjungan')
+                ->join('pasien', 'pasien.id = kunjungan.id_pasien')
+                ->join('status', 'pasien.id_status = status.id')
+                ->get()->getResultArray();
+        }
+        return $kunjungan;
+    }
+
     public function export($type = null)
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $kunjungan = $this->db->table('kunjungan')->select('*,kunjungan.id as id_kunjungan')
             ->join('pasien', 'pasien.id = kunjungan.id_pasien')
             ->join('status', 'pasien.id_status = status.id')
@@ -116,6 +124,9 @@ class Kunjungan extends BaseController
 
     public function viewAddPasienByAdmin()
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $data = [
             'title' => 'Tambah Pasien',
             'path' => 'Tambah Pasien',

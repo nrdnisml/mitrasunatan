@@ -12,19 +12,26 @@ class Keuangan extends BaseController
         $this->db = \Config\Database::connect();
     }
 
-    public function index($day = null)
+    public function index($index = null)
     {
-        if ($day == 1) {
-            $keuangan = $this->db->query('SELECT * FROM `income` WHERE DATE(`created_at`) = CURDATE()')->getResultArray();
-        } elseif ($day == 7) {
-            $keuangan = $this->db->query('SELECT * FROM `income` WHERE YEARWEEK(`created_at`) = YEARWEEK(NOW())')->getResultArray();
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
+
+        if ($index) {
+            $tglStart = $this->request->getVar('tgl-start');
+            $tglEnd = $this->request->getVar('tgl-end');
+            $keuangan = $this->db->query('SELECT * FROM `income` WHERE DATE(`income`.`created_at`) BETWEEN "' . $tglStart . '" AND "' . $tglEnd . '"')->getResultArray();
+            $totalIncome = $this->db->query('SELECT SUM(income) AS income FROM `income` WHERE DATE(`income`.`created_at`) BETWEEN "' . $tglStart . '" AND "' . $tglEnd . '"')->getRowArray();
         } else {
             $keuangan = $this->model->findAll();
+            $totalIncome = $this->db->query('SELECT SUM(income) AS income FROM `income`')->getRowArray();
         }
         $data = [
             'title' => 'Keuangan',
             'path' => 'Keuangan',
-            'income' => $keuangan
+            'income' => $keuangan,
+            'totalIncome' => $totalIncome['income']
         ];
 
         echo view('/backend/keuangan', $data);
@@ -32,6 +39,9 @@ class Keuangan extends BaseController
 
     public function export($type = null)
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $data = [
             'data' => $this->model->findAll()
         ];
@@ -75,6 +85,9 @@ class Keuangan extends BaseController
 
     public function delete($id)
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $this->model->delete($id);
         return redirect()->to('/keuangan');
     }

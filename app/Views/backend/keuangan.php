@@ -8,18 +8,18 @@
             Filter data :
         </h6>
         <div class="card-title">
-            <a href="<?= base_url('/keuangan/1'); ?>" class="btn btn-primary">
-                <i class="fas fa-calendar-day"></i> Hari ini
-            </a>
-            <a href="<?= base_url('/keuangan/7'); ?>" class="btn btn-success">
-                <i class="fas fa-calendar-week"></i> Minggu ini
-            </a>
+            <form method="GET" action="<?= base_url('/keuangan/1'); ?>" class="form-inline">
+                <input type="text" class="form-control mb-2 mr-3" id="tgl-start" placeholder="Tgl Awal" onfocus="(this.type='date')" onblur="(this.type='text')" name="tgl-start" required>
+                <input type="text" class="form-control mb-2 mr-sm-2" id="tgl-end" placeholder="Tgl Akhir" onfocus="(this.type='date')" onblur="(this.type='text')" name="tgl-end" required>
+
+                <button type="submit" class="btn btn-primary mb-2">Filter</button>
+
+            </form>
+        </div>
+        <div class="text-right">
             <a href="<?= base_url('/keuangan'); ?>" class="btn btn-danger">
                 <i class="fas fa-calendar"></i> Semua tanggal
             </a>
-            <a href="" data-toggle="modal" data-target="#tambahKeuangan" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Income</a>
-        </div>
-        <div class="text-right">
             <a href="/keuangan/export" target="blank" class="btn btn-outline-danger"><i class="fas fa-print"></i> Print Data</a>
             <a href="/keuangan/export/1" class="btn btn-outline-success"><i class="fas fa-file-excel"></i> Export Excel</a>
         </div>
@@ -30,7 +30,6 @@
             <thead>
                 <tr class="text-center">
                     <th>Income</th>
-                    <th>Total Income</th>
                     <th>Sumber</th>
                     <th>Keterangan</th>
                     <th>Tanggal</th>
@@ -42,7 +41,6 @@
                     <?php $tgl_daftar = substr($income['created_at'], 0, 10); ?>
                     <tr class="text-center">
                         <td><?= rupiah($income['income']); ?></td>
-                        <td><?= rupiah($income['total']); ?></td>
                         <td><?= $income['sumber']; ?></td>
                         <td><?= $income['ket']; ?></td>
                         <td><?= longdate_indo($tgl_daftar); ?></td>
@@ -55,7 +53,6 @@
             <tfoot>
                 <tr class="text-center">
                     <th>Income</th>
-                    <th>Total Income</th>
                     <th>Sumber</th>
                     <th>Keterangan</th>
                     <th>Tanggal</th>
@@ -63,6 +60,7 @@
                 </tr>
             </tfoot>
         </table>
+        <h5>Total Income : <?= rupiah($totalIncome); ?></h5>
     </div>
 </div>
 <!-- MODAL EDIT TANGGAL BOOKING -->

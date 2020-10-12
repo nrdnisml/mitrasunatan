@@ -9,17 +9,17 @@ helper('global'); ?>
             Filter data :
         </h6>
         <div class="card-title">
-            <a href="<?= base_url('/pasien/1'); ?>" class="btn btn-primary">
-                <i class="fas fa-calendar-day"></i> Hari ini
-            </a>
-            <a href="<?= base_url('/pasien/7'); ?>" class="btn btn-success">
-                <i class="fas fa-calendar-week"></i> Minggu ini
-            </a>
+            <form method="GET" action="<?= base_url('/pasien/1'); ?>" class="form-inline">
+                <input type="text" class="form-control mb-2 mr-3" id="tgl-start" placeholder="Tgl Awal" onfocus="(this.type='date')" onblur="(this.type='text')" name="tgl-start" required>
+                <input type="text" class="form-control mb-2 mr-sm-2" id="tgl-end" placeholder="Tgl Akhir" onfocus="(this.type='date')" onblur="(this.type='text')" name="tgl-end" required>
+                <button type="submit" class="btn btn-primary mb-2">Filter</button>
+            </form>
+        </div>
+
+        <div class="text-right">
             <a href="<?= base_url('/pasien'); ?>" class="btn btn-danger">
                 <i class="fas fa-calendar"></i> Semua tanggal
             </a>
-        </div>
-        <div class="text-right">
             <a href="/pasien/export" target="blank" class="btn btn-outline-danger"><i class="fas fa-print"></i> Print Data</a>
             <a href="/pasien/export/1" class="btn btn-outline-success"><i class="fas fa-file-excel"></i> Export Excel</a>
         </div>
@@ -36,7 +36,7 @@ helper('global'); ?>
                     <th>Alamat</th>
                     <th>Tanggal Sunat</th>
                     <th>Jumlah Kontrol</th>
-                    <th>Hapus</th>
+                    <th>Action</th>
                     <th><b>Kontak</b></th>
                 </tr>
             </thead>
@@ -68,8 +68,13 @@ helper('global'); ?>
                             ?>
                         </td>
                         <td>
-                            <div class="col-12">
-                                <a href="<?= base_url('/pasien/delete'); ?>/<?= $p['id_pasien']; ?>" class="tombol-hapus btn btn-sm btn-danger mt-1"><i class="fas fa-trash"></i></a>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <a href="<?= base_url('/pasien/invoice'); ?>/<?= $p['id_pasien']; ?>" target="blank" class="btn btn-sm btn-primary mt-1"><i class="fas fa-receipt"></i></a>
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <a href="<?= base_url('/pasien/delete'); ?>/<?= $p['id_pasien']; ?>" class="tombol-hapus btn btn-sm btn-danger mt-1"><i class="fas fa-trash"></i></a>
+                                </div>
                             </div>
                         </td>
                         <td>
@@ -94,7 +99,7 @@ helper('global'); ?>
                     <th>Alamat</th>
                     <th>Tanggal Sunat</th>
                     <th>Jumlah Kontrol</th>
-                    <th>Hapus</th>
+                    <th>Action</th>
                     <th><b>Kontak</b></th>
                 </tr>
             </tfoot>
@@ -195,7 +200,7 @@ helper('global'); ?>
 
                         <div class="row">
                             <div class="col">
-                                <a href="<?= base_url('/pendaftar/invoice'); ?>" class="btn btn-primary btn-block">
+                                <a href="<?= base_url('/pendaftar/invoice'); ?>" class="btn btn-primary btn-block inv">
                                     <span>Invoice </span><i class="fas fa-receipt"></i>
                                 </a>
                             </div>
@@ -258,7 +263,9 @@ helper('global'); ?>
                 $('.status').html(data.hubungan);
                 $('.wa').attr("href", "https://wa.me/" + data.wa);
                 $('.wa').attr("target", "blank");
+                $('.inv').attr("target", "blank");
                 $('.email').attr("href", "mailto:" + data.email);
+                $('.inv').attr("href", "<?= base_url('/pasien/invoice/'); ?>/" + id);
             }
         });
     });

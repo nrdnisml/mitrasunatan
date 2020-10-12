@@ -24,7 +24,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+    <link href="<?= base_url('assets') ?>/img/logoms.png" rel="icon">
+    <link href="<?= base_url('assets') ?>/img/logoms.png.png" rel="apple-touch-icon">
     <title><?= $title; ?></title>
     <!-- Select2 -->
     <link rel="stylesheet" href="<?= base_url('assets') ?>/vendor/select2/css/select2.min.css">

@@ -37,17 +37,17 @@
             Filter data :
         </h6>
         <div class="card-title">
-            <a href="<?= base_url('/kunjungan/1'); ?>" class="btn btn-primary">
-                <i class="fas fa-calendar-day"></i> Hari ini
-            </a>
-            <a href="<?= base_url('/kunjungan/7'); ?>" class="btn btn-success">
-                <i class="fas fa-calendar-week"></i> Minggu ini
-            </a>
+            <form method="GET" action="<?= base_url('/kunjungan/1'); ?>" class="form-inline">
+                <input type="text" class="form-control mb-2 mr-3" id="tgl-start" placeholder="Tgl Awal" onfocus="(this.type='date')" onblur="(this.type='text')" name="tgl-start" required>
+                <input type="text" class="form-control mb-2 mr-sm-2" id="tgl-end" placeholder="Tgl Akhir" onfocus="(this.type='date')" onblur="(this.type='text')" name="tgl-end" required>
+                <button type="submit" class="btn btn-primary mb-2">Filter</button>
+            </form>
+
+        </div>
+        <div class="text-right">
             <a href="<?= base_url('/kunjungan'); ?>" class="btn btn-danger">
                 <i class="fas fa-calendar"></i> Semua tanggal
             </a>
-        </div>
-        <div class="text-right">
             <a href="/kunjungan/export" target="blank" class="btn btn-outline-danger"><i class="fas fa-print"></i> Print Data</a>
             <a href="/kunjungan/export/1" class="btn btn-outline-success"><i class="fas fa-file-excel"></i> Export Excel</a>
         </div>

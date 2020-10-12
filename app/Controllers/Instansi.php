@@ -81,6 +81,9 @@ class Instansi extends BaseController
 
     public function tambah()
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         // this var for parameter function on Image class
         $file = $this->request->getFile('gambar');
 
@@ -114,6 +117,9 @@ class Instansi extends BaseController
 
     public function update()
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $id = $this->model->findColumn('id');
         $file = $this->request->getFile('gambar');
         $img =  $this->model->where('id', $id[0])->findColumn('img');

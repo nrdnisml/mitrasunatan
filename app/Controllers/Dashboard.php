@@ -13,6 +13,7 @@ class Dashboard extends BaseController
 {
     public function __construct()
     {
+
         $this->cKunjungan = new Kunjungan();
         $this->cKeuangan = new Keuangan();
         $this->cPendaftar = new Pendaftar();
@@ -23,6 +24,9 @@ class Dashboard extends BaseController
     }
     public function index()
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $pendaftar =  $query = $this->db->query('SELECT 
         `pasien`.*,`pasien`.`id` as `id_pasien`, 
         `status`.*, 
@@ -51,6 +55,9 @@ class Dashboard extends BaseController
 
     public function confirm($id)
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $pasien = $this->pasien->find($id);
         $paket = $this->cPendaftar->hargaPaketSunat($id);
 
@@ -73,6 +80,9 @@ class Dashboard extends BaseController
 
     public function delete($id)
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $data = $this->pasien->find($id);
         $id_pj = $data['id_pj'];
         $id_status = $data['id_status'];

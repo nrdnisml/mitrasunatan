@@ -19,6 +19,9 @@ class Pendaftar extends BaseController
 
     public function index()
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $data = [
             'title' => 'Pendaftar',
             'path' => 'pendaftar',
@@ -29,6 +32,9 @@ class Pendaftar extends BaseController
 
     public function getData($id = null)
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         if (!$id) {
             $query = $this->db->query('SELECT 
         `pasien`.*,`pasien`.`id` as `id_pasien`, 
@@ -77,6 +83,9 @@ class Pendaftar extends BaseController
 
     public function jsonData($id)
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $data = $this->getData($id);
         $tgl_booking = substr($data['tgl_booking'], 0, 10);
         $tgl_daftar = substr($data['created_at'], 0, 10);
@@ -102,6 +111,19 @@ class Pendaftar extends BaseController
         echo json_encode($json);
     }
 
+    private function addDataTransaksi($id)
+    {
+        $paket = $this->db->query('SELECT `id_paket` FROM `pasien` WHERE `id` =' . $id)->getRowArray();
+        $income = $this->db->query('SELECT `id` FROM `income` ORDER BY `id` DESC LIMIT 1')->getRowArray();
+        $transaksi = [
+            'id_pasien' => $id,
+            'id_paket' => $paket,
+            'id_income' => $income,
+            'created_at' => date('Y-m-d')
+        ];
+        $this->db->table('transaksi')->insert($transaksi);
+    }
+
     public function hargaPaketSunat($id)
     {
         $data = $this->getData($id);
@@ -110,9 +132,9 @@ class Pendaftar extends BaseController
         $tgl_lahir = substr($data['tgl_lahir'], 0, 10);
         $umur = hitung_umur_tahun($tgl_lahir, $tgl_daftar);
         if ($umur > 16) {
-            $paket = $this->db->query('SELECT `nama`, `harga_dewasa` as `harga` FROM `paket` WHERE `id` =' . $id_paket['id_paket'])->getRowArray();
+            $paket = $this->db->query('SELECT `id`,`nama`, `harga_dewasa` as `harga` FROM `paket` WHERE `id` =' . $id_paket['id_paket'])->getRowArray();
         } else {
-            $paket = $this->db->query('SELECT `nama`, `harga_anak` as `harga` FROM `paket` WHERE `id` =' . $id_paket['id_paket'])->getRowArray();
+            $paket = $this->db->query('SELECT `id`,`nama`, `harga_anak` as `harga` FROM `paket` WHERE `id` =' . $id_paket['id_paket'])->getRowArray();
         }
         return $paket;
     }
@@ -134,10 +156,14 @@ class Pendaftar extends BaseController
         $this->cKeuangan->addByConfirm($keuangan['income'], $keuangan['sumber'], $keuangan['ket']);
         $this->status->save($data);
         $this->cKunjungan->addKunjungan($id, "Sunat", date("Y-m-d"));
+        $this->addDataTransaksi($id);
     }
 
     public function confirm($id)
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $this->confirmProcess($id);
         $this->session->setFlashdata('success', 'Konfirmasi berhasil !');
         return redirect()->to('/pendaftar');
@@ -145,6 +171,9 @@ class Pendaftar extends BaseController
 
     public function delete($id)
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $data = $this->db->table('pasien')->getWhere(['id' => $id])->getRowArray();
         $id_pj = $data['id_pj'];
         $id_status = $data['id_status'];
@@ -171,6 +200,9 @@ class Pendaftar extends BaseController
 
     public function editBooking($id)
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $pasien = $this->db->table('pasien')->getWhere(['id' => $id])->getRowArray();
         $idStatus = $this->status->where('id', $pasien['id_status'])->findColumn('id');
         $data = [

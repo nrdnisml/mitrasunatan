@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="<?= base_url('assets') ?>/img/favicon.png" rel="icon">
-    <link href="<?= base_url('assets') ?>/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="<?= base_url('assets') ?>/img/logoms.png" rel="icon">
+    <link href="<?= base_url('assets') ?>/img/logoms.png.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -54,7 +54,7 @@
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
 
-            <h1 class="logo mr-auto"><a href="index.html">Klinik Mitra Sunatan</a></h1>
+            <h1 class="logo mr-auto"><a href="<?= base_url('/'); ?>">Klinik Mitra Sunatan</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 

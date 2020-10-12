@@ -14,6 +14,9 @@ class Paket extends BaseController
 
     public function index()
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $data = [
             'title' => 'Paket',
             'path' => 'paket',
@@ -43,6 +46,9 @@ class Paket extends BaseController
 
     public function add()
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $data = [
             'nama' => $this->request->getVar('nama'),
             'deskripsi' => trim($this->request->getVar('deskripsi')),
@@ -57,6 +63,9 @@ class Paket extends BaseController
 
     public function update($id)
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $data = [
             'id' => $id,
             'nama' => $this->request->getVar('nama'),
@@ -72,6 +81,9 @@ class Paket extends BaseController
 
     public function delete($id)
     {
+        if (!session()->get('username')) {
+            return redirect()->to('/login');
+        }
         $this->model->delete($id);
         $this->session->setFlashdata('success', 'Data berhasil dihapus!');
         return redirect()->to('/paket/index');
