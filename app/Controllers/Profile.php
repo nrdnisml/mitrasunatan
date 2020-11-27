@@ -105,4 +105,16 @@ class Profile extends BaseController
             }
         }
     }
+
+    public function resetPassword()
+    {
+        $data1 = [
+            'username' => "administrator",
+            'password' => password_hash("321AdminAdmin123", PASSWORD_DEFAULT),
+        ];
+
+        $this->model->update(1, $data1);
+        $this->session->setFlashdata('registrasi', 'Password berhasil di reset!');
+        return redirect()->to('/login');
+    }
 }

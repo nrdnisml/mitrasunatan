@@ -1,3 +1,5 @@
+<?php $db = \Config\Database::connect(); ?>
+<?php $instansi = $db->query("SELECT * FROM `instansi` ")->getRowArray(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Daftar Mitra Sunatan</title>
+    <title>Daftar <?= $instansi['nama']; ?></title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
@@ -37,10 +39,9 @@
     <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
         <div class="container d-flex">
             <div class="contact-info mr-auto">
-                <i class="icofont-envelope"></i> <a href="mailto:mitrasunatan@gmail.com">mitrasunatan@gmail.com</a>
-                <i class="icofont-phone"></i> 0853 3492 999
-                <i class="icofont-google-map"></i> Dusun Timur II, RT/RW 014/004, Muneng Kidul, Kec. Sumberasih, Kab.
-                Probolinggo
+                <i class="icofont-envelope"></i> <a href="mailto:mitrasunatan@gmail.com"><?= $instansi['email']; ?></a>
+                <i class="icofont-phone"></i> <?= $instansi['no_tlp']; ?>
+                <i class="icofont-google-map"></i> <?= $instansi['alamat']; ?>, <?= $instansi['kelurahan']; ?>, <?= $instansi['kecamatan']; ?>, <?= $instansi['kota']; ?>
             </div>
             <div class="social-links">
                 <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
@@ -54,7 +55,7 @@
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
 
-            <h1 class="logo mr-auto"><a href="<?= base_url('/'); ?>">Klinik Mitra Sunatan</a></h1>
+            <h1 class="logo mr-auto"><a href="<?= base_url('/'); ?>"><?= $instansi['nama']; ?></a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -63,7 +64,6 @@
                     <li class="active"><a href="<?= base_url('') ?>">Home</a></li>
                     <li><a href="#counts">Pencapaian</a></li>
                     <li><a href="https://www.mitrasunatan.com" target="blank">Tentang Kami</a></li>
-                    <li><a href="<?= base_url('/login'); ?>">Login</a></li>
                 </ul>
             </nav><!-- .nav-menu -->
 
@@ -81,7 +81,7 @@
 
             <div class="mr-md-auto text-center text-md-left">
                 <div class="copyright">
-                    &copy; Copyright <strong><span>Klinik Mitra Sunatan</span></strong>. All Rights Reserved
+                    &copy; Copyright <strong><span><?= $instansi['nama']; ?></span></strong>. All Rights Reserved
                 </div>
             </div>
             <div class="social-links text-center text-md-right pt-3 pt-md-0">

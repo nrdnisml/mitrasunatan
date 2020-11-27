@@ -47,6 +47,9 @@
                                 </button>
                                 <hr>
                             </form>
+                            <center class="pt-3">
+                                <a href="<?= base_url('Profile/resetPassword')?>" class="text-decoration-none">Reset Password</a>
+                            </center>
                         </div>
                     </div>
                 </div>
