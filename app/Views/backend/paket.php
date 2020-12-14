@@ -70,19 +70,19 @@
 
                             <div class="form-group">
                                 <label for="username">Nama Paket</label>
-                                <input type="text" name="nama" class="form-control" id="nama">
+                                <input type="text" required name="nama" class="form-control" id="nama">
                             </div>
                             <div class="form-group">
                                 <label for="harga_d">Harga Paket Dewasa</label>
-                                <input type="number" placeholder="Rp.0" name="harga_d" class="form-control" id="harga_d">
+                                <input type="number" required placeholder="Rp.0" name="harga_d" class="form-control" id="harga_d">
                             </div>
                             <div class="form-group">
                                 <label for="harga_a">Harga Paket Anak-anak</label>
-                                <input type="number" placeholder="Rp.0" name="harga_a" class="form-control" id="harga_a">
+                                <input type="number" required placeholder="Rp.0" name="harga_a" class="form-control" id="harga_a">
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi Paket</label>
-                                <textarea name="deskripsi" id="deskripsi" class="form-control" rows="5"></textarea>
+                                <textarea name="deskripsi" required id="deskripsi" class="form-control" rows="5"></textarea>
                             </div>
 
                         </div>
@@ -112,19 +112,19 @@
 
                             <div class="form-group">
                                 <label for="username">Nama Paket</label>
-                                <input type="text" name="nama" class="form-control" id="nama">
+                                <input type="text" required name="nama" class="form-control" id="nama">
                             </div>
                             <div class="form-group">
                                 <label for="harga_d">Harga Paket Dewasa</label>
-                                <input type="number" placeholder="Rp.0" name="harga_d" class="form-control" id="harga_d">
+                                <input type="number" required placeholder="Rp.0" name="harga_d" class="form-control" id="harga_d">
                             </div>
                             <div class="form-group">
                                 <label for="harga_a">Harga Paket Anak-anak</label>
-                                <input type="number" placeholder="Rp.0" name="harga_a" class="form-control" id="harga_a">
+                                <input type="number" required placeholder="Rp.0" name="harga_a" class="form-control" id="harga_a">
                             </div>
                             <div class="form-group">
                                 <label for="deskripsi">Deskripsi Paket</label>
-                                <textarea name="deskripsi" id="deskripsi" class="form-control" rows="5"></textarea>
+                                <textarea name="deskripsi" required id="deskripsi" class="form-control" rows="5"></textarea>
                             </div>
 
                         </div>
